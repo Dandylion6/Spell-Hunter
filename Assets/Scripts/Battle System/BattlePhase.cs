@@ -1,8 +1,12 @@
 public abstract class BattlePhase
 {
     protected BattleContext Context { get; private set; }
+    protected BattleData BattleData => Context.Data;
 
-    protected BattlePhase(BattleContext context) => Context = context;
+    protected BattlePhase(BattleContext context)
+    {
+        Context = context;
+    }
     
     /// <summary>
     ///     Called once the phase becomes active. 

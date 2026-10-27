@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32fc5dbca6a1997408a66b9bf26694bf, type: 3}
-  m_Name: Test_Speedy
+  m_Name: Test_Speedy_1
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDefinition
   maxHealth: 100
   maxMana: 40

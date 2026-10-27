@@ -5,6 +5,9 @@ public class BattleData
 {
     public IReadOnlyList<Combatant> Combatants => combatants;
     private readonly List<Combatant> combatants;
+    
+    public Combatant PreviousCombatant { get; private set; }
+    public Combatant ActiveCombatant { get; private set; }
 
     public BattleData(List<Combatant> combatants)
     {
@@ -23,5 +26,11 @@ public class BattleData
         if (combatant == null) return;
         if (!combatants.Contains(combatant)) return;
         combatants.Remove(combatant);
+    }
+    
+    public void SetActiveCombatant(Combatant activeCombatant)
+    {
+        PreviousCombatant = ActiveCombatant;
+        ActiveCombatant = activeCombatant;
     }
 }

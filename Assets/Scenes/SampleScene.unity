@@ -479,6 +479,7 @@ MonoBehaviour:
   testCharacters:
   - {fileID: 11400000, guid: 3372b0cc90837894999362a312655871, type: 2}
   - {fileID: 11400000, guid: 125cc0a7b9020e34ba5a987f507aca1e, type: 2}
+  - {fileID: 11400000, guid: f16a8b6919d21b84f853c138f66bccb7, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

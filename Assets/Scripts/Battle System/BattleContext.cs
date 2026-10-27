@@ -20,6 +20,7 @@ public class BattleContext : MonoBehaviour
         if (IsInCombat) return;
         Data = data;
         currentPhase = ClockPhase;
+        currentPhase.Start();
     }
 
     private void EndCombat()
@@ -36,6 +37,12 @@ public class BattleContext : MonoBehaviour
         
         // TODO: Create a system to generate encounters.
         List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
+        for (int i = 0; i < characters.Count; ++i)
+        {
+            CharacterStats character = characters[i];
+            Debug.Log(i + ". " + character + " (" + character.ID + ")");
+        }
+        
         List<Combatant> combatants = characters.Select(testCharacter => new Combatant(testCharacter)).ToList();
         var data =  new BattleData(combatants);
         BeginCombat(data);
