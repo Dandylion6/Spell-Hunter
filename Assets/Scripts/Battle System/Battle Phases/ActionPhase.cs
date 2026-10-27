@@ -6,21 +6,19 @@ public class ActionPhase : BattlePhase
 
     public override void Start()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Stop()
     {
-        throw new System.NotImplementedException();
     }
 
     public override bool ShouldSwitchTo(out BattlePhase nextPhase)
     {
-        throw new System.NotImplementedException();
+        nextPhase = null;
+        return false;
     }
 
     public override void Tick()
     {
-        throw new System.NotImplementedException();
     }
 }

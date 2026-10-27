@@ -10,11 +10,22 @@ public class BattleContext : MonoBehaviour
     
     private BattlePhase currentPhase;
 
-    private void Start()
+    public void BeginCombat()
+    {
+        if (IsInCombat) return;
+        currentPhase = ClockPhase;
+    }
+
+    private void EndCombat() => currentPhase = null;
+
+    private void Awake()
     {
         ClockPhase = new ClockPhase(this);
         ActionPhase = new ActionPhase(this);
         ExecutionPhase = new ExecutionPhase(this);
+        
+        // TODO: Create a system to generate encounters.
+        BeginCombat();
     }
 
     private void Update()
