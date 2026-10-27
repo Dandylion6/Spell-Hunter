@@ -56,7 +56,7 @@ public class Stat
     private int cachedValue;
     private bool isDirty = true;
     
-    protected Stat(int baseValue) => BaseValue = baseValue;
+    public Stat(int baseValue) => BaseValue = baseValue;
 
     public void SetBaseValue(int baseValue)
     {
