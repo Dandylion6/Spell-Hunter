@@ -36,14 +36,11 @@ public class BattleContext : MonoBehaviour
         ExecutionPhase = new ExecutionPhase(this);
         
         // TODO: Create a system to generate encounters.
-        List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
-        for (int i = 0; i < characters.Count; ++i)
-        {
-            CharacterStats character = characters[i];
-            Debug.Log(i + ". " + character + " (" + character.ID + ")");
-        }
+
+        TestBrain testBrain = new();
         
-        List<Combatant> combatants = characters.Select(testCharacter => new Combatant(testCharacter, null)).ToList();
+        List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
+        List<Combatant> combatants = characters.Select((characterStats, i) => new Combatant(characterStats, testBrain, i)).ToList();
         var data =  new BattleData(combatants);
         BeginCombat(data);
     }

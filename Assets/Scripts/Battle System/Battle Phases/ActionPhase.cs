@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class ActionPhase : BattlePhase
 {
@@ -10,6 +11,7 @@ public class ActionPhase : BattlePhase
 
     public override void Start()
     {
+        BattleData.ClearAction(); // Make sure action isn't dirty.
         action = BattleData.ActiveCombatant.Brain.RequestAction(BattleData);
     }
 
