@@ -12,13 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a502cfaa-23e7-40be-b21b-6a7632a45bad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Test_Speedy.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Test_Speedy.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattlePhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattlePhase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IActionProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/BattleData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/TurnClock.cs" root0="FORCE_HIGHLIGHTING" />
@@ -42,59 +40,59 @@
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000000090656" />
-      <entry key="S5" value="1.0000615592504645" />
-      <entry key="S10" value="1.0157395312659634" />
-      <entry key="S30" value="2.3816818656959273" />
-      <entry key="S60" value="6.722557300705831" />
-      <entry key="M2" value="15.594063213867901" />
-      <entry key="M5" value="37.70908669620027" />
-      <entry key="M10" value="72.72451001769863" />
-      <entry key="M15" value="105.47849672962592" />
-      <entry key="M30" value="193.28202224494345" />
-      <entry key="H1" value="319.94149754821115" />
-      <entry key="H2" value="446.4531145244134" />
-      <entry key="H4" value="539.7714167418744" />
-      <entry key="D1" value="639.9620108990853" />
-      <entry key="W1" value="659.6411813493564" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0000000003446587" />
+      <entry key="S10" value="1.0000378673223824" />
+      <entry key="S30" value="1.1176874269930184" />
+      <entry key="S60" value="2.3866655498353193" />
+      <entry key="M2" value="8.355746393529092" />
+      <entry key="M5" value="30.903202175892392" />
+      <entry key="M10" value="65.14296674297188" />
+      <entry key="M15" value="91.08355344669216" />
+      <entry key="M30" value="150.22896608970314" />
+      <entry key="H1" value="262.46827810451026" />
+      <entry key="H2" value="430.5051754397595" />
+      <entry key="H4" value="593.4515909642305" />
+      <entry key="D1" value="805.7281025704983" />
+      <entry key="W1" value="851.9605672185547" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.3181614269918837E-243" />
-      <entry key="MS500" value="2.6965769322917618E-49" />
-      <entry key="S2" value="1.0460567076214758E-12" />
-      <entry key="S5" value="2.900562582407382E-5" />
-      <entry key="S10" value="0.01008683662176044" />
-      <entry key="S30" value="0.6390016149789159" />
-      <entry key="S60" value="2.1032275642909704" />
-      <entry key="M2" value="5.026816465788189" />
-      <entry key="M5" value="14.114236428208313" />
-      <entry key="M10" value="28.982322615108885" />
-      <entry key="M15" value="42.79440836713068" />
-      <entry key="M30" value="75.3688318149257" />
-      <entry key="H1" value="112.80518408441345" />
-      <entry key="H2" value="144.83813867455524" />
-      <entry key="H4" value="166.6581534290358" />
-      <entry key="D1" value="188.98967249183798" />
-      <entry key="W1" value="193.2720754123139" />
+      <entry key="MS100" value="3.645810190294717E-247" />
+      <entry key="MS500" value="5.288709302638146E-50" />
+      <entry key="S2" value="6.671977328531484E-13" />
+      <entry key="S5" value="1.995049911949291E-5" />
+      <entry key="S10" value="0.0063097006828701455" />
+      <entry key="S30" value="0.39119193377809697" />
+      <entry key="S60" value="1.9079044010910886" />
+      <entry key="M2" value="6.015010655861949" />
+      <entry key="M5" value="18.688713583493374" />
+      <entry key="M10" value="36.548492816091" />
+      <entry key="M15" value="49.12950258672614" />
+      <entry key="M30" value="75.21555567572541" />
+      <entry key="H1" value="116.84905058971134" />
+      <entry key="H2" value="170.51354755456245" />
+      <entry key="H4" value="218.1002814149834" />
+      <entry key="D1" value="276.51991506843007" />
+      <entry key="W1" value="288.8648260816134" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.072984466725826E-5" />
-      <entry key="MS500" value="0.1251734069639168" />
-      <entry key="S2" value="0.5948096671125122" />
-      <entry key="S5" value="0.8124436856408235" />
-      <entry key="S10" value="0.9255127694075818" />
-      <entry key="S30" value="2.9578251507743794" />
-      <entry key="S60" value="8.757138483922889" />
-      <entry key="M2" value="20.54138684514182" />
-      <entry key="M5" value="51.72408030981648" />
-      <entry key="M10" value="101.59814827923263" />
-      <entry key="M15" value="148.16541647304925" />
-      <entry key="M30" value="268.5559301827625" />
-      <entry key="H1" value="432.67463027080845" />
-      <entry key="H2" value="591.2444042198294" />
-      <entry key="H4" value="706.4024113341928" />
-      <entry key="D1" value="828.9465156781805" />
-      <entry key="W1" value="852.9125008981495" />
+      <entry key="MS100" value="0.027584468634082968" />
+      <entry key="MS500" value="0.4876777307638209" />
+      <entry key="S2" value="0.8356669589222491" />
+      <entry key="S5" value="0.9307240489652218" />
+      <entry key="S10" value="0.9704966978565596" />
+      <entry key="S30" value="1.4805828438907205" />
+      <entry key="S60" value="4.234371956936458" />
+      <entry key="M2" value="14.269670243433117" />
+      <entry key="M5" value="49.4655517174551" />
+      <entry key="M10" value="101.57448692573541" />
+      <entry key="M15" value="140.11104945518932" />
+      <entry key="M30" value="225.36711501982685" />
+      <entry key="H1" value="379.2544597080193" />
+      <entry key="H2" value="600.9705738927029" />
+      <entry key="H4" value="811.520165780863" />
+      <entry key="D1" value="1082.2411465056985" />
+      <entry key="W1" value="1140.8243634574324" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{

@@ -43,7 +43,7 @@ public class BattleContext : MonoBehaviour
             Debug.Log(i + ". " + character + " (" + character.ID + ")");
         }
         
-        List<Combatant> combatants = characters.Select(testCharacter => new Combatant(testCharacter)).ToList();
+        List<Combatant> combatants = characters.Select(testCharacter => new Combatant(testCharacter, null)).ToList();
         var data =  new BattleData(combatants);
         BeginCombat(data);
     }

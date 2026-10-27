@@ -8,6 +8,7 @@ public class BattleData
     
     public Combatant PreviousCombatant { get; private set; }
     public Combatant ActiveCombatant { get; private set; }
+    public BattleAction Action { get; private set; }
 
     public BattleData(List<Combatant> combatants)
     {
@@ -33,4 +34,13 @@ public class BattleData
         PreviousCombatant = ActiveCombatant;
         ActiveCombatant = activeCombatant;
     }
+
+    public void AssignAction(BattleAction action)
+    {
+        if (action == null) return;
+        if (Action != null) return;
+        Action = action;
+    }
+    
+    public void ClearAction() => Action = null;
 }
