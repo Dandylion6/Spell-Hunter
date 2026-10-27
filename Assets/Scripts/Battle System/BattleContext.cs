@@ -41,9 +41,11 @@ public class BattleContext : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles switching to a different <see cref="BattlePhase"/>.
+    ///     Handles switching to a different <see cref="BattlePhase"/>.
     /// </summary>
-    /// <param name="nextPhase">is the <see cref="BattlePhase"/> to switch to.</param>
+    /// <param name="nextPhase">
+    ///     is the <see cref="BattlePhase"/> to switch to.
+    /// </param>
     private void SwitchTo(BattlePhase nextPhase)
     {
         // This keeps the change clear.
