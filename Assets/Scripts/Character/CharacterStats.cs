@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class CharacterStats
 {
+    public string ID { get; private set; }
     public int CurrentHealth { get; private set; }
     public int MaxHealth { get; private set; }
     
@@ -18,6 +20,9 @@ public class CharacterStats
 
     public CharacterStats(CharacterDefinition definition)
     {
+        var guid = Guid.NewGuid();
+        ID = guid.ToString();
+        
         MaxHealth = definition.MaxHealth;
         CurrentHealth = MaxHealth;
         

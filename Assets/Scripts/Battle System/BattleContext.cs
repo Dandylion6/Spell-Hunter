@@ -1,7 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleContext : MonoBehaviour
 {
+    [SerializeField] private List<CharacterDefinition> testCharacters = new();
+    
+    public BattleData Data { get; private set; }
     public bool IsInCombat => currentPhase != null;
     
     public ClockPhase ClockPhase { get; private set; }
@@ -10,13 +15,18 @@ public class BattleContext : MonoBehaviour
     
     private BattlePhase currentPhase;
 
-    public void BeginCombat()
+    public void BeginCombat(BattleData data)
     {
         if (IsInCombat) return;
+        Data = data;
         currentPhase = ClockPhase;
     }
 
-    private void EndCombat() => currentPhase = null;
+    private void EndCombat()
+    {
+        currentPhase = null;
+        Data = null;
+    }
 
     private void Awake()
     {
@@ -25,7 +35,10 @@ public class BattleContext : MonoBehaviour
         ExecutionPhase = new ExecutionPhase(this);
         
         // TODO: Create a system to generate encounters.
-        BeginCombat();
+        List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
+        List<Combatant> combatants = characters.Select(testCharacter => new Combatant(testCharacter)).ToList();
+        var data =  new BattleData(combatants);
+        BeginCombat(data);
     }
 
     private void Update()
