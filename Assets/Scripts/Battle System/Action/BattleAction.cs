@@ -13,10 +13,9 @@ public class BattleAction
     /// </summary>
     public Ability Ability { get; private set; }
 
-    public IReadOnlyList<Combatant> Targets => targets;
+    public Combatant Target { get; private set; }
     public bool UseTurn { get; private set; }
     
-    private readonly List<Combatant> targets = null;
 
     public BattleAction(string name, Combatant actor, bool useTurn = true)
     {
@@ -25,12 +24,12 @@ public class BattleAction
         UseTurn = useTurn;
     }
 
-    public BattleAction(Combatant actor, Ability ability, List<Combatant> targets, bool useTurn = true)
+    public BattleAction(Combatant actor, Ability ability, Combatant target, bool useTurn = true)
     {
         Name = ability.Name;
         Actor = actor;
         Ability = ability;
         UseTurn = useTurn;
-        this.targets = targets;
+        Target = target;
     }
 }

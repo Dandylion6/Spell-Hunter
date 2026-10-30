@@ -6,8 +6,9 @@ public class BattleContext : MonoBehaviour
 {
     [SerializeField] private List<CharacterDefinition> testCharacters = new();
     
-    public BattleData Data { get; private set; }
-    public bool IsInCombat => currentPhase != null;
+    public Battle Battle { get; private set; }
+    public Turn CurrentTurn { get; private set; }
+    public bool IsInCombat => Battle != null;
     
     public ClockPhase ClockPhase { get; private set; }
     public ActionPhase ActionPhase { get; private set; }
@@ -15,18 +16,25 @@ public class BattleContext : MonoBehaviour
     
     private BattlePhase currentPhase;
 
-    public void BeginCombat(BattleData data)
+    public void BeginCombat(Battle battle)
     {
         if (IsInCombat) return;
-        Data = data;
+        Battle = battle;
         currentPhase = ClockPhase;
         currentPhase.Start();
     }
 
+    public void BeginTurn(Combatant combatant)
+    {
+        int nextIndex = CurrentTurn == null ? 0 : CurrentTurn.Index + 1;
+        CurrentTurn = new Turn(combatant, nextIndex);
+    }
+
     private void EndCombat()
     {
+        currentPhase.Stop();
         currentPhase = null;
-        Data = null;
+        Battle = null;
     }
 
     private void Awake()
@@ -40,8 +48,8 @@ public class BattleContext : MonoBehaviour
         TestBrain testBrain = new();
         
         List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
-        List<Combatant> combatants = characters.Select((characterStats, i) => new Combatant(characterStats, testBrain, i)).ToList();
-        var data =  new BattleData(combatants);
+        List<Combatant> combatants = characters.Select((characterStats, i) => new Combatant(characterStats, testBrain, Combatant.Type.Opponent, i)).ToList();
+        var data =  new Battle(combatants);
         BeginCombat(data);
     }
 

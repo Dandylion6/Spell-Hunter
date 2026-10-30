@@ -10,13 +10,12 @@ public class ExecutionPhase : BattlePhase
 
     public override void Start()
     {
-        Debug.Log("Combatant: " + BattleData.ActiveCombatant.ID + "\nUsed Action: " + BattleData.Action.Name + "!");
+        Debug.Log("Combatant: " + CurrentTurn.Actor.ID + "\nUsed Action: " + CurrentTurn.Action.Name + "!");
         phaseDuration.Start();
     }
 
     public override void Stop()
     {
-        BattleData.ClearAction();
         phaseDuration.Stop();
     }
 

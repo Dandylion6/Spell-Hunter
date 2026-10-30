@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class TestBrain : IActionProvider
 {
-    public Task<BattleAction> RequestAction(BattleData battle)
+    public Task<BattleAction> RequestAction(Battle battle, Combatant combatant)
     {
-        BattleAction testAction = new("Attack", battle.ActiveCombatant);
+        BattleAction testAction = new("Attack", combatant);
 
         Task<BattleAction> action = Task.FromResult(testAction);
         return action;

@@ -1,7 +1,8 @@
 public abstract class BattlePhase
 {
-    protected BattleContext Context { get; private set; }
-    protected BattleData BattleData => Context.Data;
+    protected BattleContext Context { get; }
+    protected Battle Battle => Context.Battle;
+    protected Turn CurrentTurn => Context.CurrentTurn;
 
     protected BattlePhase(BattleContext context)
     {

@@ -12,20 +12,20 @@ public class ClockPhase : BattlePhase
 
     public override void Start()
     {
-        Combatant nextActiveCombatant = BattleData.Combatants
+        Combatant nextActiveCombatant = Battle.Combatants
             .OrderBy(combatant => combatant.Clock.TicksTillReady(combatant.Stats.Speed.Value))
             .FirstOrDefault();
 
         if (nextActiveCombatant == null) throw new NoNullAllowedException();
         
         int ticks = nextActiveCombatant.Clock.TicksTillReady(nextActiveCombatant.Stats.Speed.Value);
-        foreach (Combatant combatant in BattleData.Combatants)
+        foreach (Combatant combatant in Battle.Combatants)
         {
             combatant.Clock.AddProgress(ticks, combatant.Stats.Speed.Value);
         }
         
         nextActiveCombatant.Clock.LoopClock();
-        BattleData.SetActiveCombatant(nextActiveCombatant);
+        Context.BeginTurn(nextActiveCombatant);
         phaseDuration.Start();
     }
 

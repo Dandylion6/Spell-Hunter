@@ -11,13 +11,12 @@ public class ActionPhase : BattlePhase
 
     public override void Start()
     {
-        BattleData.ClearAction(); // Make sure action isn't dirty.
-        action = BattleData.ActiveCombatant.Brain.RequestAction(BattleData);
+        action = CurrentTurn.Actor.Brain.RequestAction(Battle, CurrentTurn.Actor);
     }
 
     public override void Stop()
     {
-        BattleData.AssignAction(action.Result);
+        CurrentTurn.SetAction(action.Result);
     }
 
     public override bool ShouldSwitchTo(out BattlePhase nextPhase)

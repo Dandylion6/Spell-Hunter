@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 /// </summary>
 public interface IActionProvider
 {
-    Task<BattleAction> RequestAction(BattleData battle);
+    Task<BattleAction> RequestAction(Battle battle, Combatant combatant);
 }
