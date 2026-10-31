@@ -13,24 +13,13 @@ public class StopWatch
     public bool IsRunning { get; private set; }
     public bool IsLooped { get; }
     public bool IsCompleted { get; private set; }
-    
-    private Action onComplete;
+    public event Action Completed;
     
     public StopWatch(float timerSeconds, bool isLooped = false)
     {
         TimerSeconds = timerSeconds;
         IsLooped = isLooped;
     }
-    
-    /// <summary>
-    ///     Registers a callback that is invoked each time the timer completes.
-    /// </summary>
-    public void SubscribeToOnComplete(Action callback) => onComplete += callback;
-    
-    /// <summary>
-    ///     Removes a previously registered completion callback.
-    /// </summary>
-    public void UnsubscribeFromOnComplete(Action callback) => onComplete -= callback;
     
     /// <summary>
     ///     Changes the timer duration. Does not reset <see cref="ElapsedSeconds"/>,
@@ -93,7 +82,7 @@ public class StopWatch
         
         ElapsedSeconds -= TimerSeconds;
         IsCompleted = true;
-        onComplete?.Invoke();
+        Completed?.Invoke();
         
         if (!IsLooped) Stop();
     }
