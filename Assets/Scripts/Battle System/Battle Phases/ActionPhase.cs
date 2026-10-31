@@ -22,7 +22,7 @@ public class ActionPhase : BattlePhase
     public override bool ShouldSwitchTo(out BattlePhase nextPhase)
     {
         nextPhase = null;
-        if (!action.IsCompleted) return false;
+        if (!action.IsCompletedSuccessfully) return false;
         
         // Ready to execute the action.
         nextPhase = Context.ExecutionPhase;                
