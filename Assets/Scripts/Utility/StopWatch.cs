@@ -83,7 +83,10 @@ public class StopWatch
         ElapsedSeconds -= TimerSeconds;
         IsCompleted = true;
         Completed?.Invoke();
+
+        if (IsLooped) return;
         
-        if (!IsLooped) Stop();
+        ElapsedSeconds = 0.0f;
+        IsRunning = false;
     }
 }

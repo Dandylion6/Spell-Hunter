@@ -12,6 +12,7 @@ public class ClockPhase : BattlePhase
 
     public override void Start()
     {
+        Debug.Log("Starting ClockPhase");
         Combatant nextActiveCombatant = Battle.Combatants
             .OrderBy(combatant => combatant.Clock.TicksTillReady(combatant.Stats.Speed.Value))
             .FirstOrDefault();

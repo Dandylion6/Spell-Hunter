@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleContext : MonoBehaviour
 {
     [SerializeField] private List<CharacterDefinition> testCharacters = new();
+    [SerializeField] private PlayerActionController controller;
     
     public Battle Battle { get; private set; }
     public Turn CurrentTurn { get; private set; }
@@ -49,6 +50,10 @@ public class BattleContext : MonoBehaviour
         
         List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
         List<Combatant> combatants = characters.Select((characterStats, i) => new Combatant(characterStats, testBrain, Combatant.Type.Opponent, i)).ToList();
+        
+        var player = new CharacterStats(testCharacters[0]);
+        combatants.Add(new Combatant(player, controller, Combatant.Type.Ally));
+        
         var data =  new Battle(combatants);
         BeginCombat(data);
     }

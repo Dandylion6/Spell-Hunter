@@ -12,28 +12,35 @@
   <component name="ChangeListManager">
     <list default="true" id="a502cfaa-23e7-40be-b21b-6a7632a45bad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/ActionSelectionSession.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/ActionSelectionSession.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/PlayerActionController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/PlayerActionController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/StopWatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/StopWatch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5016c3a47c2a4a0cbfa8e12eb592279ba6a600/7b/2310ce6b/BuildPipelineInterfaces.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IActionProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/TurnClock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/ActionSessionView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Actors/PlayerActionController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -41,61 +48,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.984306605694899E-273" />
-      <entry key="S2" value="1.221216697296757E-68" />
-      <entry key="S5" value="1.4831121646211157E-27" />
-      <entry key="S10" value="8.27444250322202E-14" />
-      <entry key="S30" value="1.2790311547344527E-4" />
-      <entry key="S60" value="0.027156049309716743" />
-      <entry key="M2" value="0.45788340391646964" />
-      <entry key="M5" value="6.071978154717247" />
-      <entry key="M10" value="33.07413341071186" />
-      <entry key="M15" value="66.93212000580289" />
-      <entry key="M30" value="160.48665289883022" />
-      <entry key="H1" value="344.8893144877599" />
-      <entry key="H2" value="768.7246141582458" />
-      <entry key="H4" value="1494.2274603059975" />
-      <entry key="D1" value="3171.880743944909" />
-      <entry key="W1" value="3682.911374839771" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0001210591712326" />
+      <entry key="S2" value="1.1048937046383176" />
+      <entry key="S5" value="1.4057885349716592" />
+      <entry key="S10" value="1.6371194417935848" />
+      <entry key="S30" value="1.9948955950797878" />
+      <entry key="S60" value="2.7544764026195248" />
+      <entry key="M2" value="4.241163179595384" />
+      <entry key="M5" value="9.972736397580347" />
+      <entry key="M10" value="24.200170891213528" />
+      <entry key="M15" value="40.794603767947436" />
+      <entry key="M30" value="102.95110607907291" />
+      <entry key="H1" value="258.89456136845826" />
+      <entry key="H2" value="648.0081069429395" />
+      <entry key="H4" value="1369.8888023742225" />
+      <entry key="D1" value="3185.5182739424276" />
+      <entry key="W1" value="3764.293000828759" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000313755440264" />
-      <entry key="MS500" value="1.1256950725498085" />
-      <entry key="S2" value="1.5954284246824841" />
-      <entry key="S5" value="1.8127029296257873" />
-      <entry key="S10" value="1.9015003769416299" />
-      <entry key="S30" value="1.9660916242433335" />
-      <entry key="S60" value="1.9979561431972876" />
-      <entry key="M2" value="2.3071280798798504" />
-      <entry key="M5" value="5.451860662866066" />
-      <entry key="M10" value="14.894956354731702" />
-      <entry key="M15" value="25.207837886776602" />
-      <entry key="M30" value="53.85473735509566" />
-      <entry key="H1" value="111.60573979169898" />
-      <entry key="H2" value="232.25834007989832" />
-      <entry key="H4" value="429.07967164639473" />
-      <entry key="D1" value="881.3565693219057" />
-      <entry key="W1" value="1019.3195576752281" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.1027199498181563E-129" />
+      <entry key="S2" value="9.780975427737498E-33" />
+      <entry key="S5" value="3.578797665075544E-13" />
+      <entry key="S10" value="1.30172158518224E-6" />
+      <entry key="S30" value="0.03175707477248442" />
+      <entry key="S60" value="0.40693813684958435" />
+      <entry key="M2" value="1.613558549995574" />
+      <entry key="M5" value="6.113572806850012" />
+      <entry key="M10" value="16.313886596481787" />
+      <entry key="M15" value="26.816530974266875" />
+      <entry key="M30" value="56.35803395854262" />
+      <entry key="H1" value="113.65179226105973" />
+      <entry key="H2" value="232.18388971244062" />
+      <entry key="H4" value="433.9232343072926" />
+      <entry key="D1" value="929.1907790108215" />
+      <entry key="W1" value="1086.4700259148528" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0036700107657132272" />
-      <entry key="MS500" value="0.33345975292881874" />
-      <entry key="S2" value="1.0514633945231933" />
-      <entry key="S5" value="1.5083729080351358" />
-      <entry key="S10" value="1.7293450836999742" />
-      <entry key="S30" value="1.9037091090435332" />
-      <entry key="S60" value="1.9925017715249376" />
-      <entry key="M2" value="2.7426474832651797" />
-      <entry key="M5" value="11.494418635753004" />
-      <entry key="M10" value="47.92426074218246" />
-      <entry key="M15" value="92.08748142698187" />
-      <entry key="M30" value="214.28466238539096" />
-      <entry key="H1" value="456.4368369587879" />
-      <entry key="H2" value="1000.9214687066761" />
-      <entry key="H4" value="1923.249071263591" />
-      <entry key="D1" value="4053.2168813481335" />
-      <entry key="W1" value="4702.227538287309" />
+      <entry key="MS100" value="0.002595089480657248" />
+      <entry key="MS500" value="0.3039891883324872" />
+      <entry key="S2" value="0.80885802878864" />
+      <entry key="S5" value="1.2255715737215689" />
+      <entry key="S10" value="1.523534064599034" />
+      <entry key="S30" value="1.9777664455616022" />
+      <entry key="S60" value="3.12390036372162" />
+      <entry key="M2" value="5.819368356683014" />
+      <entry key="M5" value="16.041128697333292" />
+      <entry key="M10" value="40.45385713753523" />
+      <entry key="M15" value="67.5464095578073" />
+      <entry key="M30" value="159.24399157136082" />
+      <entry key="H1" value="372.4834494927681" />
+      <entry key="H2" value="880.1288273982265" />
+      <entry key="H4" value="1803.7526393705098" />
+      <entry key="D1" value="4114.687441606282" />
+      <entry key="W1" value="4850.759400165341" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -107,31 +114,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to": "Unity Editor",
+    "DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider": "Unity Editor",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Unity Attach To.Attach to.executor": "Debug",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+}]]></component>
+  <component name="RunManager" selected="Unity Attach To.Attach to">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\daano\Desktop\Game Projects\Spell Hunter&quot; -debugCodeOptimization" />
@@ -205,6 +215,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/PlayerActionController.cs</url>
+          <line>14</line>
+          <properties documentPath="C:\Users\daano\Desktop\Game Projects\Spell Hunter\Assets\Scripts\Character\Actors\Player\PlayerActionController.cs" containingFunctionPresentation="Method 'RequestAction'">
+            <startOffsets>
+              <option value="504" />
+            </startOffsets>
+            <endOffsets>
+              <option value="530" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
