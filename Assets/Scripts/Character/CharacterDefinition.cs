@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterDefinition : ScriptableObject
 {
     [Header("Base Character Stats")]
+    [SerializeField] private string displayName = "New Character Name";
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int maxMana = 40;
     [SerializeField] private int physicalResistance = 10;
@@ -13,6 +14,7 @@ public class CharacterDefinition : ScriptableObject
     [SerializeField] private int poisonResistance = 10;
     [SerializeField] private int speed = 20;
     
+    public string DisplayName => displayName;
     public int MaxHealth => maxHealth;
     public int MaxMana => maxMana;
     public int PhysicalResistance => physicalResistance;

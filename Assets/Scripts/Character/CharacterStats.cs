@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class CharacterStats
 {
+    public string DisplayName { get; private set; }
     public int CurrentHealth { get; private set; }
-    public int MaxHealth { get; private set; }
+    public Stat MaxHealth { get; }
     
     public int CurrentMana { get; private set; }
-    public int MaxMana { get; private set; }
+    public Stat MaxMana { get; }
     
     public Stat PhysicalResistance { get; private set; }
     public Stat FireResistance { get; private set; }
@@ -17,13 +18,19 @@ public class CharacterStats
     
     public Stat Speed { get; private set; }
 
-    public CharacterStats(CharacterDefinition definition)
+    public CharacterStats(CharacterDefinition definition) : this (definition, definition.DisplayName)
     {
-        MaxHealth = definition.MaxHealth;
-        CurrentHealth = MaxHealth;
+    }
+
+    public CharacterStats(CharacterDefinition definition, string displayName)
+    {
+        DisplayName = displayName;
         
-        MaxMana = definition.MaxMana;
-        CurrentMana = MaxMana;
+        MaxHealth = new  Stat(definition.MaxHealth);
+        CurrentHealth = MaxHealth.Value;
+        
+        MaxMana = new Stat(definition.MaxMana);
+        CurrentMana = MaxMana.Value;
         
         PhysicalResistance = new Stat(definition.PhysicalResistance);
         FireResistance = new Stat(definition.FireResistance);
@@ -34,9 +41,9 @@ public class CharacterStats
         Speed = new Stat(definition.Speed);
     }
 
-    public void TakeDamage(int damage) => CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
-    public void Heal(int amount) => CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
+    public void TakeDamage(int damage) => CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth.Value);
+    public void Heal(int amount) => CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth.Value);
     
-    public void ConsumeMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana - amount, 0, MaxMana);
-    public void RegenerateMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana + amount, 0, MaxMana);
+    public void ConsumeMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana - amount, 0, MaxMana.Value);
+    public void RegenerateMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana + amount, 0, MaxMana.Value);
 }

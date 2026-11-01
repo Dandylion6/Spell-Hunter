@@ -1,28 +1,32 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class BattleContext : MonoBehaviour
 {
-    [SerializeField] private List<CharacterDefinition> testCharacters = new();
-    [SerializeField] private PlayerActionController controller;
-    
     public Battle Battle { get; private set; }
     public Turn CurrentTurn { get; private set; }
     public bool IsInCombat => Battle != null;
+
+    public event Action<Battle> BattleStarted;
+    public event Action<BattleResult> BattleEnded;
     
     public ClockPhase ClockPhase { get; private set; }
     public ActionPhase ActionPhase { get; private set; }
     public ExecutionPhase ExecutionPhase { get; private set; }
     
     private BattlePhase currentPhase;
-
+    
     public void BeginCombat(Battle battle)
     {
         if (IsInCombat) return;
+        
         Battle = battle;
         currentPhase = ClockPhase;
         currentPhase.Start();
+        
+        BattleStarted?.Invoke(battle);
     }
 
     public void BeginTurn(Combatant combatant)
@@ -33,9 +37,13 @@ public class BattleContext : MonoBehaviour
 
     private void EndCombat()
     {
+        BattleResult result = new();
+        
         currentPhase.Stop();
         currentPhase = null;
         Battle = null;
+        
+        BattleEnded?.Invoke(result);
     }
 
     private void Awake()
@@ -43,19 +51,6 @@ public class BattleContext : MonoBehaviour
         ClockPhase = new ClockPhase(this);
         ActionPhase = new ActionPhase(this);
         ExecutionPhase = new ExecutionPhase(this);
-        
-        // TODO: Create a system to generate encounters.
-
-        TestBrain testBrain = new();
-        
-        List<CharacterStats> characters = testCharacters.Select(character => new CharacterStats(character)).ToList();
-        List<Combatant> combatants = characters.Select((characterStats, i) => new Combatant(characterStats, testBrain, Combatant.Type.Opponent, i)).ToList();
-        
-        var player = new CharacterStats(testCharacters[0]);
-        combatants.Add(new Combatant(player, controller, Combatant.Type.Ally));
-        
-        var data =  new Battle(combatants);
-        BeginCombat(data);
     }
 
     private void Update()

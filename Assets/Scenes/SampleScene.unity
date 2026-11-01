@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 951967650}
   - component: {fileID: 951967649}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Battle UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1237,8 +1237,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1906649043}
   - component: {fileID: 1906649044}
+  - component: {fileID: 1906649045}
+  - component: {fileID: 1906649046}
   m_Layer: 0
-  m_Name: Battle Context
+  m_Name: Battle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1271,7 +1273,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b9991a293eb174d96c70b0ebc0663f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleContext
-  testCharacters:
+--- !u!114 &1906649045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906649042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7d302871694e147b1b5a85a34edb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleStarter
+  debugPlayerDefinition: {fileID: 11400000, guid: 0b4820b4f4434ed4384f8aff2c30c72d, type: 2}
+  playerActions: {fileID: 1181851235}
+  context: {fileID: 1906649044}
+--- !u!114 &1906649046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906649042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca8932ef1fe5f04e973eb6490cc4ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleTrigger
+  battleStarter: {fileID: 1906649045}
+  possibleEnemies:
   - {fileID: 11400000, guid: 3372b0cc90837894999362a312655871, type: 2}
   - {fileID: 11400000, guid: 125cc0a7b9020e34ba5a987f507aca1e, type: 2}
   - {fileID: 11400000, guid: f16a8b6919d21b84f853c138f66bccb7, type: 2}
@@ -1282,7 +1312,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1906649043}
-  - {fileID: 951967652}
   - {fileID: 1673187147}
+  - {fileID: 1906649043}
   - {fileID: 1181851236}
+  - {fileID: 951967652}

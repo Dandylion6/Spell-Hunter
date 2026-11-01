@@ -9,6 +9,8 @@ using System.Linq;
 /// </remarks>
 public class Battle
 {
+    public const int MaxEnemies = 4;
+    
     /// <summary>
     ///     A read-only view of every combatant in the battle.
     /// </summary>

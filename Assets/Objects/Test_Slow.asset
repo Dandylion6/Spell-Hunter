@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fc5dbca6a1997408a66b9bf26694bf, type: 3}
   m_Name: Test_Slow
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDefinition
-  maxHealth: 100
+  displayName: Big Boy
+  maxHealth: 130
   maxMana: 40
   physicalResistance: 10
   fireResistance: 10
   coldResistance: 10
   shockResistance: 10
   poisonResistance: 10
-  speed: 30
+  speed: 50
