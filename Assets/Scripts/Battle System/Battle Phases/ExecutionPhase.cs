@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class ExecutionPhase : BattlePhase
 {
-    private readonly StopWatch phaseDuration = new(1.0f);
-    
+    private readonly StopWatch phaseDuration = new(1.0f); // A little delay in the phase.
+
     public ExecutionPhase(BattleContext context) : base(context)
     {
     }
 
     public override void Start()
     {
-        Debug.Log("Combatant: " + CurrentTurn.Actor.ID + "\nUsed Action: " + CurrentTurn.Action.Name + "!");
-        phaseDuration.Start();
+        Debug.Log("[ACTION]\n" + CurrentTurn.Actor.Stats.DisplayName + "\nUsed Action: " + CurrentTurn.Action.Name + "!");
+        phaseDuration.Start(); // Shouls start running after the action is done.
     }
 
     public override void Stop()
@@ -29,5 +29,8 @@ public class ExecutionPhase : BattlePhase
         return true;
     }
 
-    public override void Tick() => phaseDuration.Tick();
+    public override void Tick()
+    {
+        phaseDuration.Tick();
+    }
 }

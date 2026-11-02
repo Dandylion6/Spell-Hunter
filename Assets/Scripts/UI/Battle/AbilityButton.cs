@@ -5,12 +5,18 @@ public class AbilityButton : ActionSessionView
     [SerializeField] private PlayerActionController controller;
 
     private Ability ability;
-    
+
+    private void Start()
+    {
+        ability = new Ability("Shoot", Ability.CastType.Shot);
+        Bind(controller);
+    }
+
     public void OnClick()
     {
         ActiveSession?.SelectAbility(ability);
     }
-    
+
     protected override void Refresh()
     {
     }
@@ -22,11 +28,5 @@ public class AbilityButton : ActionSessionView
 
     protected override void OnSessionDetached(ActionSelectionSession oldSession)
     {
-    }
-
-    private void Start()
-    {
-        ability = new Ability("Shoot", 10, Ability.CastType.Shot);
-        Bind(controller);
     }
 }

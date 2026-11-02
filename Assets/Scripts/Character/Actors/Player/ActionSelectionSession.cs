@@ -7,27 +7,38 @@ public class ActionSelectionSession
     {
         ChoosingAction,
         ChoosingTarget,
-        Completed,
+        Completed
     }
 
-    public IReadOnlyList<Combatant> ValidTargets => validTargets;
-    public Battle Battle { get; }
-    public SelectionState State { get; private set; }
-    public Combatant User { get; private set; }
-    public event Action Changed;
-    public event Action<BattleAction> ActionChosen;
-    
-    private List<Combatant> validTargets;
     private Ability selectedAbility;
     private Combatant selectedTarget;
-    
-    public ActionSelectionSession(Battle battle,  Combatant user)
+
+    private List<Combatant> validTargets;
+
+    public ActionSelectionSession(Battle battle, Combatant user)
     {
         Battle = battle;
         User = user;
         State = SelectionState.ChoosingAction;
     }
+
+    public IReadOnlyList<Combatant> ValidTargets => validTargets;
+    public Battle Battle { get; }
+    public SelectionState State { get; private set; }
+    public Combatant User { get; }
+    public event Action Changed;
+    public event Action<BattleAction> ActionChosen;
     
+    // TODO: Make the system decoupled from Ability if possible.
+
+    /// <summary>
+    ///     Selects an action that isn't an ability and completes the session.
+    /// </summary>
+    /// <param name="action">
+    ///     Is a pre-defined action that doesn't require a target.
+    /// </param>
+    public void SelectAction(BattleAction action) => CompleteSelection(action);
+
     public void SelectAbility(Ability ability)
     {
         selectedTarget = null;
@@ -40,7 +51,7 @@ public class ActionSelectionSession
             Changed?.Invoke();
             return;
         }
-        
+
         selectedAbility = ability;
         validTargets = Battle.GetValidTargetsForAbility(User, selectedAbility);
 
@@ -48,10 +59,10 @@ public class ActionSelectionSession
         if (canAutoSelect)
         {
             selectedTarget = validTargets[0];
-            CompleteSelection();
+            CompleteSelection(new AbilityAction(User, selectedAbility, selectedTarget));
             return;
         }
-        
+
         State = SelectionState.ChoosingTarget;
         Changed?.Invoke();
     }
@@ -60,17 +71,16 @@ public class ActionSelectionSession
     {
         if (selectedAbility == null) return;
         if (State == SelectionState.Completed) return;
-        
+
         if (!Battle.IsValidTargetForAbility(User, target, selectedAbility)) return;
-        
+
         selectedTarget = target;
-        CompleteSelection();
+        CompleteSelection(new AbilityAction(User, selectedAbility, selectedTarget));
     }
-    
-    private void CompleteSelection()
+
+    private void CompleteSelection(BattleAction action)
     {
         State = SelectionState.Completed;
-        BattleAction action = new(User, selectedAbility, selectedTarget);
         Changed?.Invoke();
         ActionChosen?.Invoke(action);
     }

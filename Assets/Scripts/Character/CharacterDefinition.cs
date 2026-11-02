@@ -23,4 +23,10 @@ public class CharacterDefinition : ScriptableObject
     public int ShockResistance => shockResistance;
     public int PoisonResistance => poisonResistance;
     public int Speed => speed;
+
+    public IActionProvider GetBrain()
+    {
+        // TODO: Make working AI brains.
+        return new TestBrain();
+    }
 }

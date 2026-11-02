@@ -10,19 +10,17 @@ public class StatModifier
         ///     Adds to the base value as a flat value.
         /// </summary>
         Flat,
+
         /// <summary>
         ///     Adds based on the flat value as percentage.
         /// </summary>
         Percentage,
+
         /// <summary>
         ///     Multiplies the value by an amount.
         /// </summary>
         Multiplier
     }
-    
-    public object Source { get; private set; }
-    public ModifierType Type { get; private set; }
-    public float Value { get; private set; }
 
     public StatModifier(object source, ModifierType type, float value)
     {
@@ -30,10 +28,23 @@ public class StatModifier
         Type = type;
         Value = value;
     }
+
+    public object Source { get; }
+    public ModifierType Type { get; }
+    public float Value { get; }
 }
 
 public class Stat
 {
+    private readonly List<StatModifier> modifiers = new();
+    private int cachedValue;
+    private bool isDirty = true;
+
+    public Stat(int baseValue)
+    {
+        BaseValue = baseValue;
+    }
+
     /// <summary>
     ///     The value before modifiers are used.
     /// </summary>
@@ -50,20 +61,15 @@ public class Stat
             return cachedValue;
         }
     }
-    
+
     public IReadOnlyList<StatModifier> Modifiers => modifiers;
-    private readonly List<StatModifier> modifiers = new();
-    private int cachedValue;
-    private bool isDirty = true;
-    
-    public Stat(int baseValue) => BaseValue = baseValue;
 
     public void SetBaseValue(int baseValue)
     {
         BaseValue = baseValue;
         MarkDirty();
     }
-    
+
     /// <summary>
     ///     Assigns the modifier to the stat.
     /// </summary>
@@ -74,11 +80,11 @@ public class Stat
     {
         if (modifier == null) return;
         if (modifiers.Contains(modifier)) return;
-        
+
         modifiers.Add(modifier);
         MarkDirty();
     }
-    
+
     /// <summary>
     ///     Removes all modifiers belonging to a source (like a skill).
     /// </summary>
@@ -97,7 +103,6 @@ public class Stat
         float flat = 0.0f, percentage = 0.0f, multiplier = 1.0f;
 
         foreach (StatModifier modifier in modifiers)
-        {
             switch (modifier.Type)
             {
                 case StatModifier.ModifierType.Flat: flat += modifier.Value; break;
@@ -106,11 +111,13 @@ public class Stat
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-        
+
         cachedValue = Mathf.RoundToInt((BaseValue + flat) * (1.0f + percentage / 100.0f) * multiplier);
         isDirty = false;
     }
 
-    private void MarkDirty() => isDirty = true;
+    private void MarkDirty()
+    {
+        isDirty = true;
+    }
 }

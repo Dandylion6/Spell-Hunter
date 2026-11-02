@@ -4,7 +4,7 @@ using UnityEngine;
 public class ActionPhase : BattlePhase
 {
     private Task<BattleAction> action;
-    
+
     public ActionPhase(BattleContext context) : base(context)
     {
     }
@@ -24,9 +24,9 @@ public class ActionPhase : BattlePhase
     {
         nextPhase = null;
         if (!action.IsCompletedSuccessfully) return false;
-        
+
         // Ready to execute the action.
-        nextPhase = Context.ExecutionPhase;                
+        nextPhase = Context.ExecutionPhase;
         return true;
     }
 

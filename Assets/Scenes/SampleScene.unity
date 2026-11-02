@@ -1282,12 +1282,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1906649042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7d302871694e147b1b5a85a34edb17, type: 3}
+  m_Script: {fileID: 11500000, guid: 0435fabc5e7c76245989ba5078c9765c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleStarter
-  debugPlayerDefinition: {fileID: 11400000, guid: 0b4820b4f4434ed4384f8aff2c30c72d, type: 2}
-  playerActions: {fileID: 1181851235}
+  m_EditorClassIdentifier: Assembly-CSharp::BattleLauncher
   context: {fileID: 1906649044}
+  playerDefinition: {fileID: 11400000, guid: 0b4820b4f4434ed4384f8aff2c30c72d, type: 2}
+  controller: {fileID: 1181851235}
 --- !u!114 &1906649046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,13 +1297,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1906649042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca8932ef1fe5f04e973eb6490cc4ad6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3382f8242404c76479e80be7b9511706, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleTrigger
-  battleStarter: {fileID: 1906649045}
-  possibleEnemies:
-  - {fileID: 11400000, guid: 3372b0cc90837894999362a312655871, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::RandomEncounterTrigger
+  launcher: {fileID: 1906649045}
+  enemies:
   - {fileID: 11400000, guid: 125cc0a7b9020e34ba5a987f507aca1e, type: 2}
+  - {fileID: 11400000, guid: 3372b0cc90837894999362a312655871, type: 2}
   - {fileID: 11400000, guid: f16a8b6919d21b84f853c138f66bccb7, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

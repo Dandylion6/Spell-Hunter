@@ -1,45 +1,74 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-///     Holds the state of a battle: who is fighting, whose turn it is, the action being resolved, and battle-related queries. 
+///     Holds the state of a battle: who is fighting, whose turn it is, the action being resolved, and battle-related
+///     queries.
 /// </summary>
 /// <remarks>
-///     Teams are determined by <see cref="Combatant.CombatantType"/>.
+///     Teams are determined by <see cref="Combatant.CombatantType" />.
 /// </remarks>
 public class Battle
 {
-    public const int MaxEnemies = 4;
-    
-    /// <summary>
-    ///     A read-only view of every combatant in the battle.
-    /// </summary>
-    public IReadOnlyList<Combatant> Combatants => combatants;
-    private readonly List<Combatant> combatants;
-    
-    public Battle(List<Combatant> combatants)
+    public const int MaxOpponents = 4;
+
+    public List<Combatant> Combatants { get; }
+    public event Action<BattleResult> Ended;
+
+    private readonly Dictionary<Combatant, int> combatantIndices = new();
+    private readonly Dictionary<string, int> combatantNameCounts = new();
+
+    public Battle(IReadOnlyList<Combatant> combatants)
     {
-        this.combatants = combatants;
+        BattleValidityCheck(combatants);
+        Combatants = combatants.ToList();
+
+        foreach (Combatant combatant in Combatants) RegisterCombatant(combatant);
+        RefreshDisplayNames();
     }
-    
+
+    private void BattleValidityCheck(IReadOnlyList<Combatant> combatants)
+    {
+        if (combatants == null)
+            throw new System.ArgumentNullException(nameof(combatants));
+
+        if (combatants.Any(combatant => combatant == null))
+            throw new System.ArgumentException("Null combatant!", nameof(combatants));
+
+        int allyCount = combatants.Count(combatant => combatant.CombatantType == CombatantType.Ally);
+        if (allyCount < 1)
+            throw new System.ArgumentException("There must be at least one ally in battle!", nameof(combatants));
+
+        int opponentCount = combatants.Count(combatant => combatant.CombatantType == CombatantType.Opponent);
+        if (opponentCount is < 1 or > MaxOpponents)
+            throw new System.ArgumentException($"Battle needs 1 - {MaxOpponents} opponents!", nameof(combatants));
+    }
+
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="combatant"></param>
     public void AddCombatant(Combatant combatant)
     {
         if (combatant == null) return;
-        if (combatants.Contains(combatant)) return;
-        combatants.Add(combatant);
+        if (Combatants.Contains(combatant)) return;
+
+        Combatants.Add(combatant);
+        RegisterCombatant(combatant);
+        RefreshDisplayNames();
     }
 
-    public void RemoveCombatant(Combatant combatant)
+    public void Kill(Combatant combatant)
     {
         if (combatant == null) return;
-        if (!combatants.Contains(combatant)) return;
-        combatants.Remove(combatant);
+        if (!Combatants.Contains(combatant)) return;
+
+        if (!HasLivingMembers(combatant.CombatantType))
+        {
+            Ended?.Invoke(BuildResult());
+        }
     }
-    
+
     public List<Combatant> GetValidTargetsForAbility(Combatant user, Ability ability)
     {
         var validTargets = new List<Combatant>();
@@ -59,11 +88,60 @@ public class Battle
 
     public List<Combatant> GetTeammatesOfUser(Combatant user)
     {
-        return combatants.Where(target => target.CombatantType == user.CombatantType).ToList();
+        return Combatants.Where(target => target.CombatantType == user.CombatantType).ToList();
     }
 
     public List<Combatant> GetEnemiesOfUser(Combatant user)
     {
-        return combatants.Where(target => target.CombatantType != user.CombatantType).ToList();
+        return Combatants.Where(target => target.CombatantType != user.CombatantType).ToList();
+    }
+
+    public List<Combatant> GetLivingMembers(CombatantType type)
+    {
+        return Combatants.Where(combatant => combatant.CombatantType == type && !combatant.IsDead).ToList();
+    }
+
+    public List<Combatant> GetDeadMembers(CombatantType type)
+    {
+        return Combatants.Where(combatant => combatant.CombatantType == type && combatant.IsDead).ToList();
+    }
+
+    public bool HasLivingMembers(CombatantType type)
+    {
+        return Combatants.Where(combatant => combatant.CombatantType == type).Any(combatant => !combatant.IsDead);
+    }
+
+    private void RegisterCombatant(Combatant combatant)
+    {
+        string baseName = combatant.Stats.BaseName;
+        int index = combatantNameCounts.GetValueOrDefault(baseName);
+
+        combatantNameCounts[baseName] = index + 1;
+        combatantIndices[combatant] = index;
+    }
+
+    private void RefreshDisplayNames()
+    {
+        foreach (Combatant combatant in Combatants)
+        {
+            string baseName = combatant.Stats.BaseName;
+            bool needsSuffix = combatantNameCounts[baseName] > 1;
+            if (!needsSuffix) continue;
+
+            int index = combatantIndices[combatant];
+            combatant.Stats.ApplyNameSuffix(index);
+        }
+    }
+
+    private BattleResult BuildResult()
+    {
+        if (!HasLivingMembers(CombatantType.Opponent))
+        {
+            return new BattleResult(BattleOutcome.Victory, GetDeadMembers(CombatantType.Opponent));
+        }
+
+        return !HasLivingMembers(CombatantType.Ally)
+            ? new BattleResult(BattleOutcome.Defeat)
+            : new BattleResult(BattleOutcome.Unknown);
     }
 }

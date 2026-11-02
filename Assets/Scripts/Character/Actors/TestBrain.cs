@@ -1,11 +1,12 @@
+using System.Linq;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class TestBrain : IActionProvider
 {
     public Task<BattleAction> RequestAction(Battle battle, Combatant combatant)
     {
-        BattleAction testAction = new("Attack", combatant);
+        Ability testAbility = new("Fire Ball", Ability.CastType.Shot);
+        BattleAction testAction = new AbilityAction(combatant, testAbility, battle.GetValidTargetsForAbility(combatant, testAbility).FirstOrDefault());
 
         Task<BattleAction> action = Task.FromResult(testAction);
         return action;
