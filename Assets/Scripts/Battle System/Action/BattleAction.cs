@@ -14,5 +14,20 @@ public abstract class BattleAction
         Actor = actor;
     }
 
-    public abstract List<BattleEvent> Execute();
+    public List<BattleEvent> Execute(Battle battle)
+    {
+        List<BattleEvent> events = new();
+        if (battle == null)
+        {
+            events.Add(new InvalidActionEvent());
+            return events;
+        }
+        
+        Execute(battle, events);
+        
+        events.Add(new ActionEndEvent());
+        return events;
+    }
+
+    protected abstract void Execute(Battle battle, List<BattleEvent> events);
 }

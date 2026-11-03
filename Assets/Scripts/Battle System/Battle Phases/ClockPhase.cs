@@ -12,7 +12,6 @@ public class ClockPhase : BattlePhase
 
     public override void Start()
     {
-        Debug.Log("Starting ClockPhase");
         Combatant nextActiveCombatant = Battle.Combatants
             .OrderBy(combatant => combatant.Clock.TicksTillReady(combatant.Stats.Speed.Value))
             .FirstOrDefault();
@@ -22,8 +21,7 @@ public class ClockPhase : BattlePhase
         int ticks = nextActiveCombatant.Clock.TicksTillReady(nextActiveCombatant.Stats.Speed.Value);
         foreach (Combatant combatant in Battle.Combatants)
             combatant.Clock.AddProgress(ticks, combatant.Stats.Speed.Value);
-
-        nextActiveCombatant.Clock.LoopClock();
+        
         Context.BeginTurn(nextActiveCombatant);
         phaseDuration.Start();
     }

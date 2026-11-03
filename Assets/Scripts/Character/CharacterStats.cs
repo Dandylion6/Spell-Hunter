@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterStats
 {
     public string BaseName { get; }
-    public string DisplayName { get; private set; }
     public int CurrentHealth { get; private set; }
     public Stat MaxHealth { get; }
     
@@ -22,8 +23,6 @@ public class CharacterStats
     public CharacterStats(CharacterDefinition definition)
     {
         BaseName = definition.DisplayName;
-        DisplayName = BaseName;
-        
         MaxHealth = new  Stat(definition.MaxHealth);
         CurrentHealth = MaxHealth.Value;
         
@@ -37,16 +36,6 @@ public class CharacterStats
         PoisonResistance = new Stat(definition.PoisonResistance);
         
         Speed = new Stat(definition.Speed);
-    }
-
-    public void ApplyNameSuffix(int index)
-    {
-        if (index < 0 ) return;
-
-        char suffix = (char)('A' + index);
-        if (suffix > 'Z') return;
-        
-        DisplayName = $"{BaseName} {suffix}";
     }
 
     public void TakeDamage(int damage) => CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth.Value);

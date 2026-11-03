@@ -8,7 +8,7 @@ public class AbilityButton : ActionSessionView
 
     private void Start()
     {
-        ability = new Ability("Shoot", Ability.CastType.Shot);
+        ability = new Ability("Shoot", AbilityType.Shot);
         Bind(controller);
     }
 

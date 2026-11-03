@@ -11,7 +11,6 @@ public class ActionPhase : BattlePhase
 
     public override void Start()
     {
-        Debug.Log("Starting ActionPhase");
         action = CurrentTurn.Actor.Brain.RequestAction(Battle, CurrentTurn.Actor);
     }
 

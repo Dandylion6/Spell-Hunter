@@ -1,5 +1,20 @@
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
+
+public enum AbilityType
+{
+    Shot,
+    Hex,
+    Boon,
+}
+
+public enum AbilityStatus
+{
+    Ready,
+    Unavailable,
+    InsufficientMana,
+    OnCooldown,
+    NoValidTarget,
+}
 
 public class Ability
 {
@@ -8,43 +23,28 @@ public class Ability
     public const int BaseHexCost = 6;
     public const int BaseBoonCost = 4;
     
-    public enum CastType
-    {
-        Shot,
-        Hex,
-        Boon,
-    }
-    
-    public enum AvailabilityResult
-    {
-        Available,
-        Unavailable,
-        InsufficientMana,
-        OnCooldown,
-        NoValidTarget,
-    }
-    
-    public string Name { get; private set; }
+    public string DisplayName { get; private set; }
+    public CharacterStats User { get; private set; }
     public Stat ManaCost { get; }
-    public CastType Cast { get; }
+    public AbilityType Type { get; }
     
-    public IReadOnlyList<IAugment> Augments => augments;
-    private readonly List<IAugment> augments = new(AugmentSlots);
+    public IReadOnlyList<Augment> Augments => augments;
+    private readonly List<Augment> augments = new(AugmentSlots);
     
-    public Ability(string name, CastType cast)
+    public Ability(string displayName, AbilityType type)
     {
-        Name = name;
-        Cast = cast;
-        ManaCost = Cast switch
+        DisplayName = displayName;
+        Type = type;
+        ManaCost = Type switch
         {
-            CastType.Shot => new Stat(BaseShotCost),
-            CastType.Hex => new Stat(BaseHexCost),
-            CastType.Boon => new Stat(BaseBoonCost),
-            _ => throw new System.ArgumentOutOfRangeException(nameof(cast))
+            AbilityType.Shot => new Stat(BaseShotCost),
+            AbilityType.Hex => new Stat(BaseHexCost),
+            AbilityType.Boon => new Stat(BaseBoonCost),
+            _ => throw new System.ArgumentOutOfRangeException(nameof(type))
         };
     }
 
-    public Ability(string name, CastType cast, IReadOnlyList<IAugment> augments) : this(name, cast)
+    public Ability(string displayName, AbilityType type, IReadOnlyList<Augment> augments) : this(displayName, type)
     {
         if (augments == null)
             throw new System.ArgumentNullException(nameof(augments));
@@ -52,32 +52,57 @@ public class Ability
         if (augments.Count > AugmentSlots)
             throw new System.ArgumentOutOfRangeException(nameof(augments));
 
-        foreach (IAugment augment in augments) ApplyAugment(augment);
+        foreach (Augment augment in augments) ApplyAugment(augment);
     }
-
-    public AvailabilityResult CheckAvailability(Combatant user, Battle battle)
+    
+    public AbilityStatus CheckStatus(Combatant user, Battle battle)
     {
-        if (user.Stats.CurrentMana < ManaCost.Value) return AvailabilityResult.InsufficientMana;
+        if (user.Stats.CurrentMana < ManaCost.Value) return AbilityStatus.InsufficientMana;
 
         IReadOnlyList<Combatant> validTargets = battle.GetValidTargetsForAbility(user, this);
-        return validTargets.Count == 0 ? AvailabilityResult.NoValidTarget : AvailabilityResult.Available;
+        return validTargets.Count == 0 ? AbilityStatus.NoValidTarget : AbilityStatus.Ready;
     }
+    
+    public void SetUser(CharacterStats user) => User = user;
+    public void ClearUser() => User = null;
 
-    public void ApplyAugment(IAugment newAugment)
+    public void ApplyAugment(Augment newAugment)
     {
         if (newAugment == null) return;
+        if (!newAugment.Definition.IsCompatibleWith(this)) return;
+        
         if (augments.Contains(newAugment)) return;
         if (augments.Count == AugmentSlots) return;
         
         augments.Add(newAugment);
-        newAugment.ApplyPassive(this);
+        newAugment.AttachToAbility(this);
     }
 
-    public void RemoveAugment(IAugment augment)
+    public void RemoveAugment(Augment augment)
     {
         if (!augments.Contains(augment)) return;
         
         augments.Remove(augment);
-        augment.RemovePassive(this);
+        augment.DetachFromAbility();
+    }
+
+    public void OnBattleStart(Battle battle)
+    {
+        foreach (Augment augment in Augments) augment.OnBattleStart(battle);
+    }
+
+    public void OnBattleEnd(Battle battle)
+    {
+        foreach (Augment augment in Augments) augment.OnBattleEnd(battle);
+    }
+
+    public void OnCast(Battle battle, Combatant target)
+    {
+        foreach (Augment augment in Augments) augment.OnCast(battle, target);
+    }
+
+    public void OnHit(Battle battle, Combatant target)
+    {
+        foreach (Augment augment in Augments) augment.OnHit(battle, target);
     }
 }

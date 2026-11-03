@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class BattleContext : MonoBehaviour
 {
-    private BattlePhase currentPhase;
     public Battle Battle { get; private set; }
     public Turn CurrentTurn { get; private set; }
+    public IBattlePresenter Presenter { get; private set; } 
     public bool IsInCombat => Battle != null;
 
     public ClockPhase ClockPhase { get; private set; }
     public ActionPhase ActionPhase { get; private set; }
     public ExecutionPhase ExecutionPhase { get; private set; }
 
+    private BattlePhase currentPhase;
+    
     private void Awake()
     {
         ClockPhase = new ClockPhase(this);

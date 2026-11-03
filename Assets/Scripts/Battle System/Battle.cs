@@ -16,19 +16,16 @@ public class Battle
     public List<Combatant> Combatants { get; }
     public event Action<BattleResult> Ended;
 
-    private readonly Dictionary<Combatant, int> combatantIndices = new();
-    private readonly Dictionary<string, int> combatantNameCounts = new();
-
     public Battle(IReadOnlyList<Combatant> combatants)
     {
         BattleValidityCheck(combatants);
         Combatants = combatants.ToList();
 
-        foreach (Combatant combatant in Combatants) RegisterCombatant(combatant);
-        RefreshDisplayNames();
+        foreach (Combatant combatant in Combatants) ApplyAbilityPassives(combatant);
+        CombatantNaming.Assign(Combatants);
     }
 
-    private void BattleValidityCheck(IReadOnlyList<Combatant> combatants)
+    private static void BattleValidityCheck(IReadOnlyList<Combatant> combatants)
     {
         if (combatants == null)
             throw new System.ArgumentNullException(nameof(combatants));
@@ -54,28 +51,31 @@ public class Battle
         if (Combatants.Contains(combatant)) return;
 
         Combatants.Add(combatant);
-        RegisterCombatant(combatant);
-        RefreshDisplayNames();
+        ApplyAbilityPassives(combatant);
+        
+        CombatantNaming.Assign(Combatants);
     }
 
     public void Kill(Combatant combatant)
     {
         if (combatant == null) return;
         if (!Combatants.Contains(combatant)) return;
+        
+        combatant.MarkAsDead();
+        
+        if (HasLivingMembers(combatant.CombatantType)) return;
 
-        if (!HasLivingMembers(combatant.CombatantType))
-        {
-            Ended?.Invoke(BuildResult());
-        }
+        foreach (Combatant toRemove in Combatants) RemoveAbilityPassives(toRemove);
+        Ended?.Invoke(BuildResult());
     }
 
     public List<Combatant> GetValidTargetsForAbility(Combatant user, Ability ability)
     {
         var validTargets = new List<Combatant>();
-        return ability.Cast switch
+        return ability.Type switch
         {
-            Ability.CastType.Shot or Ability.CastType.Hex => GetEnemiesOfUser(user),
-            Ability.CastType.Boon => GetTeammatesOfUser(user),
+            AbilityType.Shot or AbilityType.Hex => GetEnemiesOfUser(user),
+            AbilityType.Boon => GetTeammatesOfUser(user),
             _ => validTargets
         };
     }
@@ -110,27 +110,15 @@ public class Battle
     {
         return Combatants.Where(combatant => combatant.CombatantType == type).Any(combatant => !combatant.IsDead);
     }
-
-    private void RegisterCombatant(Combatant combatant)
+    
+    private void ApplyAbilityPassives(Combatant combatant)
     {
-        string baseName = combatant.Stats.BaseName;
-        int index = combatantNameCounts.GetValueOrDefault(baseName);
-
-        combatantNameCounts[baseName] = index + 1;
-        combatantIndices[combatant] = index;
+        foreach (Ability ability in combatant.Abilities) ability.OnBattleStart(this);
     }
 
-    private void RefreshDisplayNames()
+    private void RemoveAbilityPassives(Combatant combatant)
     {
-        foreach (Combatant combatant in Combatants)
-        {
-            string baseName = combatant.Stats.BaseName;
-            bool needsSuffix = combatantNameCounts[baseName] > 1;
-            if (!needsSuffix) continue;
-
-            int index = combatantIndices[combatant];
-            combatant.Stats.ApplyNameSuffix(index);
-        }
+        foreach (Ability ability in combatant.Abilities) ability.OnBattleEnd(this);
     }
 
     private BattleResult BuildResult()

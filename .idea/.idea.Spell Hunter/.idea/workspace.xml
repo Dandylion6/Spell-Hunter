@@ -12,43 +12,23 @@
   <component name="ChangeListManager">
     <list default="true" id="a502cfaa-23e7-40be-b21b-6a7632a45bad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/AbilityAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/AbilityAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IActionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IActionProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IAugment.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IAugment.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ExecutionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ExecutionPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleFactory.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleStarter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleStarter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleTrigger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleLauncher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/ActionSelectionSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/ActionSelectionSession.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/PlayerActionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/PlayerActionController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/TestBrain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/TestBrain.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStats.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/AbilityButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/AbilityButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/StopWatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/StopWatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/SDFFunctions.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/SDFFunctions.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile-2-Pass.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile-2-Pass.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,17 +44,21 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5016c3a47c2a4a0cbfa8e12eb592279ba6a600/7b/2310ce6b/BuildPipelineInterfaces.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/00/6c18beff/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d303c2bf72cd4cec95665b89c457d265d2b8ef3ed6da17cd4f85587c2f9de7/System.Linq.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/AbilityAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IActionProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Action/IAugment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/BattleResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/IBattlePresenter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle System/TurnClock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/AugmentDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/ActionSessionView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Actors/Player/Player.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/CombatantNaming.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -84,61 +68,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="4.3077263727737654E-154" />
-      <entry key="MS500" value="2.1225093976802944E-31" />
-      <entry key="S2" value="2.1465781732809024E-8" />
-      <entry key="S5" value="9.014121739738982E-4" />
-      <entry key="S10" value="0.04322802118499078" />
-      <entry key="S30" value="1.2318676534834485" />
-      <entry key="S60" value="3.744353801337597" />
-      <entry key="M2" value="7.724194161129356" />
-      <entry key="M5" value="20.122343679065843" />
-      <entry key="M10" value="40.59471346598706" />
-      <entry key="M15" value="60.84681498222307" />
-      <entry key="M30" value="131.11703806796973" />
-      <entry key="H1" value="314.9702621699761" />
-      <entry key="H2" value="744.6492156584135" />
-      <entry key="H4" value="1593.5213852170675" />
-      <entry key="D1" value="4847.382667745632" />
-      <entry key="W1" value="6279.190993274205" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0000000000076048" />
+      <entry key="S10" value="1.000004286991097" />
+      <entry key="S30" value="1.0686551079007494" />
+      <entry key="S60" value="2.287139383433441" />
+      <entry key="M2" value="8.360190208538295" />
+      <entry key="M5" value="36.99096408994719" />
+      <entry key="M10" value="89.36668154291212" />
+      <entry key="M15" value="138.18325153262458" />
+      <entry key="M30" value="280.90069038754" />
+      <entry key="H1" value="550.1849378875683" />
+      <entry key="H2" value="1018.626806476148" />
+      <entry key="H4" value="1882.1406161517614" />
+      <entry key="D1" value="5692.84957975282" />
+      <entry key="W1" value="7603.826177316298" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000009022308796" />
-      <entry key="MS500" value="1.0618106822738083" />
-      <entry key="S2" value="1.4986207674979963" />
-      <entry key="S5" value="1.7675575902019047" />
-      <entry key="S10" value="2.066868889096579" />
-      <entry key="S30" value="4.351569347438938" />
-      <entry key="S60" value="7.420474194057039" />
-      <entry key="M2" value="10.922176223343186" />
-      <entry key="M5" value="17.217007386106307" />
-      <entry key="M10" value="25.112131717946546" />
-      <entry key="M15" value="32.62892179563393" />
-      <entry key="M30" value="59.374400830823696" />
-      <entry key="H1" value="128.2312549166777" />
-      <entry key="H2" value="278.48311413085156" />
-      <entry key="H4" value="552.4409094326974" />
-      <entry key="D1" value="1516.48055644073" />
-      <entry key="W1" value="1927.0742271071956" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.6254331925721901E-156" />
+      <entry key="S2" value="1.381253853744446E-39" />
+      <entry key="S5" value="5.304675036844025E-16" />
+      <entry key="S10" value="4.983374563597649E-8" />
+      <entry key="S30" value="0.011773516176713213" />
+      <entry key="S60" value="0.2694277893823097" />
+      <entry key="M2" value="1.557316395760685" />
+      <entry key="M5" value="8.94396587111535" />
+      <entry key="M10" value="24.713095593385088" />
+      <entry key="M15" value="40.60854895310961" />
+      <entry key="M30" value="87.49937262790634" />
+      <entry key="H1" value="171.37878736003103" />
+      <entry key="H2" value="319.7002841561637" />
+      <entry key="H4" value="596.9063355910107" />
+      <entry key="D1" value="1750.5762054253873" />
+      <entry key="W1" value="2309.255388554218" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0025241312406099198" />
-      <entry key="MS500" value="0.32381157593307686" />
-      <entry key="S2" value="1.1245133012201327" />
-      <entry key="S5" value="1.574677245936244" />
-      <entry key="S10" value="1.959082653304304" />
-      <entry key="S30" value="5.38667146056854" />
-      <entry key="S60" value="10.98239084437559" />
-      <entry key="M2" value="18.509148807985014" />
-      <entry key="M5" value="37.24994293877115" />
-      <entry key="M10" value="65.63993384256254" />
-      <entry key="M15" value="93.41625888200264" />
-      <entry key="M30" value="190.43436521270783" />
-      <entry key="H1" value="443.13689018044533" />
-      <entry key="H2" value="1023.0592022814385" />
-      <entry key="H4" value="2145.887863827514" />
-      <entry key="D1" value="6363.8283071071855" />
-      <entry key="W1" value="8206.258848967584" />
+      <entry key="MS100" value="0.05041510995138288" />
+      <entry key="MS500" value="0.5501893046830686" />
+      <entry key="S2" value="0.861247622301833" />
+      <entry key="S5" value="0.9420006758373379" />
+      <entry key="S10" value="0.9705713940016583" />
+      <entry key="S30" value="1.0694163378354322" />
+      <entry key="S60" value="2.5410664284496147" />
+      <entry key="M2" value="9.884131339521476" />
+      <entry key="M5" value="45.86443670183852" />
+      <entry key="M10" value="113.98887891951232" />
+      <entry key="M15" value="178.69394079097336" />
+      <entry key="M30" value="368.29342715587967" />
+      <entry key="H1" value="721.4569911938669" />
+      <entry key="H2" value="1338.2285268980615" />
+      <entry key="H4" value="2478.9576933755857" />
+      <entry key="D1" value="7443.383761310441" />
+      <entry key="W1" value="9913.07368006611" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
