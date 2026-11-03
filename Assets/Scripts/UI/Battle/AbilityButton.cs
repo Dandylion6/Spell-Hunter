@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class AbilityButton : ActionSessionView
 {
-    [SerializeField] private PlayerActionController controller;
+    [SerializeField] private BattleLauncher launcher;
 
     private Ability ability;
 
     private void Start()
     {
-        ability = new Ability("Shoot", AbilityType.Shot);
-        Bind(controller);
+        ability = new HexAbility("File Ball", null, new HexBaseStats());
+        Bind(launcher.Player.Controller as PlayerActionController);
     }
 
     public void OnClick()

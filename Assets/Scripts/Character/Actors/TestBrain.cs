@@ -5,8 +5,8 @@ public class TestBrain : IActionProvider
 {
     public Task<BattleAction> RequestAction(Battle battle, Combatant combatant)
     {
-        Ability testAbility = new("Fire Ball", AbilityType.Shot);
-        BattleAction testAction = new AbilityAction(combatant, testAbility, battle.GetValidTargetsForAbility(combatant, testAbility).FirstOrDefault());
+        ShotAbility testAbility = new("Fire Ball", combatant, new ShotBaseStats());
+        BattleAction testAction = new AbilityAction(combatant, testAbility, testAbility.GetValidTargets(battle).FirstOrDefault());
 
         Task<BattleAction> action = Task.FromResult(testAction);
         return action;

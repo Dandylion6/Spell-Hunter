@@ -40,7 +40,7 @@ public class Stat
     private int cachedValue;
     private bool isDirty = true;
 
-    public Stat(int baseValue)
+    public Stat(int baseValue = 0)
     {
         BaseValue = baseValue;
     }

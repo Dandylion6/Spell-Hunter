@@ -14,7 +14,7 @@ public class CharacterDefinition : ScriptableObject
     [SerializeField] private int shockResistance = 10;
     [SerializeField] private int poisonResistance = 10;
     [SerializeField] private int speed = 20;
-    [SerializeField] private List<AbilityDefinition> abilities = new();
+    [SerializeField] private List<AbilityPreset> abilities = new();
     
     public string DisplayName => displayName;
     public int MaxHealth => maxHealth;
@@ -25,7 +25,7 @@ public class CharacterDefinition : ScriptableObject
     public int ShockResistance => shockResistance;
     public int PoisonResistance => poisonResistance;
     public int Speed => speed;
-    public IReadOnlyList<AbilityDefinition> Abilities => abilities;
+    public IReadOnlyList<AbilityPreset> Abilities => abilities;
 
     public IActionProvider GetBrain()
     {

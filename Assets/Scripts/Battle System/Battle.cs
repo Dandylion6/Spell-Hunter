@@ -69,23 +69,6 @@ public class Battle
         Ended?.Invoke(BuildResult());
     }
 
-    public List<Combatant> GetValidTargetsForAbility(Combatant user, Ability ability)
-    {
-        var validTargets = new List<Combatant>();
-        return ability.Type switch
-        {
-            AbilityType.Shot or AbilityType.Hex => GetEnemiesOfUser(user),
-            AbilityType.Boon => GetTeammatesOfUser(user),
-            _ => validTargets
-        };
-    }
-
-    public bool IsValidTargetForAbility(Combatant user, Combatant target, Ability ability)
-    {
-        List<Combatant> validTargets = GetValidTargetsForAbility(user, ability);
-        return validTargets.Contains(target);
-    }
-
     public List<Combatant> GetTeammatesOfUser(Combatant user)
     {
         return Combatants.Where(target => target.CombatantType == user.CombatantType).ToList();

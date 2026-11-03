@@ -1,12 +1,5 @@
 using System.Collections.Generic;
 
-public enum AbilityType
-{
-    Shot,
-    Hex,
-    Boon,
-}
-
 public enum AbilityStatus
 {
     Ready,
@@ -16,55 +9,31 @@ public enum AbilityStatus
     NoValidTarget,
 }
 
-public class Ability
+public abstract class Ability
 {
     public const int AugmentSlots = 3;
-    public const int BaseShotCost = 1;
-    public const int BaseHexCost = 6;
-    public const int BaseBoonCost = 4;
     
     public string DisplayName { get; private set; }
-    public CharacterStats User { get; private set; }
-    public Stat ManaCost { get; }
-    public AbilityType Type { get; }
+    public Combatant User { get; }
+    public Stat ManaCost { get; protected set; }
     
     public IReadOnlyList<Augment> Augments => augments;
     private readonly List<Augment> augments = new(AugmentSlots);
-    
-    public Ability(string displayName, AbilityType type)
+
+    public Ability(string displayName, Combatant user)
     {
         DisplayName = displayName;
-        Type = type;
-        ManaCost = Type switch
-        {
-            AbilityType.Shot => new Stat(BaseShotCost),
-            AbilityType.Hex => new Stat(BaseHexCost),
-            AbilityType.Boon => new Stat(BaseBoonCost),
-            _ => throw new System.ArgumentOutOfRangeException(nameof(type))
-        };
-    }
-
-    public Ability(string displayName, AbilityType type, IReadOnlyList<Augment> augments) : this(displayName, type)
-    {
-        if (augments == null)
-            throw new System.ArgumentNullException(nameof(augments));
-            
-        if (augments.Count > AugmentSlots)
-            throw new System.ArgumentOutOfRangeException(nameof(augments));
-
-        foreach (Augment augment in augments) ApplyAugment(augment);
+        User = user;
+        ManaCost = new Stat();
     }
     
-    public AbilityStatus CheckStatus(Combatant user, Battle battle)
+    public AbilityStatus CheckStatus(Battle battle)
     {
-        if (user.Stats.CurrentMana < ManaCost.Value) return AbilityStatus.InsufficientMana;
+        if (User.Stats.CurrentMana < ManaCost.Value) return AbilityStatus.InsufficientMana;
 
-        IReadOnlyList<Combatant> validTargets = battle.GetValidTargetsForAbility(user, this);
+        IReadOnlyList<Combatant> validTargets = GetValidTargets(battle);
         return validTargets.Count == 0 ? AbilityStatus.NoValidTarget : AbilityStatus.Ready;
     }
-    
-    public void SetUser(CharacterStats user) => User = user;
-    public void ClearUser() => User = null;
 
     public void ApplyAugment(Augment newAugment)
     {
@@ -85,6 +54,17 @@ public class Ability
         augments.Remove(augment);
         augment.DetachFromAbility();
     }
+
+    public abstract List<Combatant> GetValidTargets(Battle battle);
+
+    public bool IsValidTarget(Battle battle, Combatant target)
+    {
+        if (target == null) return false;
+        List<Combatant> validTargets = GetValidTargets(battle);
+        return validTargets.Contains(target);
+    }
+
+    public abstract void Execute(Battle battle, List<BattleEvent> events, Combatant target);
 
     public void OnBattleStart(Battle battle)
     {

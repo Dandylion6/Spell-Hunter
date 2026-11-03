@@ -1,14 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AbilityType
+{
+    Shot,
+    Hex,
+    Boon,
+}
+
 [CreateAssetMenu(fileName = "New Ability", menuName = "Objects/Ability")]
-public class AbilityDefinition : ScriptableObject
+public class AbilityPreset : ScriptableObject
 {
     [SerializeField] private string displayName = "New Ability";
-    [SerializeField] private AbilityType type = AbilityType.Shot;
+    [SerializeField] private AbilityType abilityType = AbilityType.Shot;
     [SerializeField] private List<AugmentDefinition> augments = new();
     
     public string DisplayName => displayName;
-    public AbilityType Type => type;
+    public AbilityType AbilityType => abilityType;
     public IReadOnlyList<AugmentDefinition> Augments => augments;
+
+    public AbilityBlueprint ToBlueprint() => new AbilityBlueprint(displayName, abilityType, augments);
 }

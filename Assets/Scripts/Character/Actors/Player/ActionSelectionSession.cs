@@ -44,7 +44,7 @@ public class ActionSelectionSession
         selectedTarget = null;
 
         bool isDeselecting = selectedAbility == ability;
-        if (isDeselecting)
+        if (isDeselecting || ability == null)
         {
             selectedAbility = null;
             State = SelectionState.ChoosingAction;
@@ -53,7 +53,7 @@ public class ActionSelectionSession
         }
 
         selectedAbility = ability;
-        validTargets = Battle.GetValidTargetsForAbility(User, selectedAbility);
+        validTargets = selectedAbility.GetValidTargets(Battle);
 
         bool canAutoSelect = validTargets.Count == 1;
         if (canAutoSelect)
@@ -72,7 +72,7 @@ public class ActionSelectionSession
         if (selectedAbility == null) return;
         if (State == SelectionState.Completed) return;
 
-        if (!Battle.IsValidTargetForAbility(User, target, selectedAbility)) return;
+        if (!selectedAbility.IsValidTarget(Battle, target)) return;
 
         selectedTarget = target;
         CompleteSelection(new AbilityAction(User, selectedAbility, selectedTarget));
