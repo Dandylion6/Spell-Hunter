@@ -47,10 +47,10 @@ public class BattleContext : MonoBehaviour
         LoopStarted?.Invoke(battle);
     }
 
-    public void BeginTurn(Combatant combatant)
+    public void BeginTurn(Combatant combatant, int ticks)
     {
         int nextIndex = CurrentTurn == null ? 0 : CurrentTurn.Index + 1;
-        CurrentTurn = new Turn(combatant, nextIndex);
+        CurrentTurn = new Turn(combatant, nextIndex, ticks);
     }
 
     private void EndCombatLoop(BattleResult result)

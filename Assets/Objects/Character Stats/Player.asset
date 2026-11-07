@@ -20,4 +20,5 @@ MonoBehaviour:
   coldResistance: 10
   shockResistance: 10
   poisonResistance: 10
-  speed: 70
+  speed: 50
+  abilities: []

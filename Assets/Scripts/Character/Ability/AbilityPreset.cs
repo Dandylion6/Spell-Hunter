@@ -8,7 +8,7 @@ public enum AbilityType
     Boon,
 }
 
-[CreateAssetMenu(fileName = "New Ability", menuName = "Objects/Ability")]
+[CreateAssetMenu(fileName = "New Preset Ability", menuName = "Objects/Preset Ability")]
 public class AbilityPreset : ScriptableObject
 {
     [SerializeField] private string displayName = "New Ability";

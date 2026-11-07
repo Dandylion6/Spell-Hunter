@@ -19,6 +19,8 @@ public class CharacterStats
     public Stat PoisonResistance { get; private set; }
     
     public Stat Speed { get; private set; }
+    
+    public Stat IncomingDamagePercentage { get; private set; }
 
     public CharacterStats(CharacterDefinition definition)
     {
@@ -36,11 +38,53 @@ public class CharacterStats
         PoisonResistance = new Stat(definition.PoisonResistance);
         
         Speed = new Stat(definition.Speed);
+        IncomingDamagePercentage = new Stat(100);
     }
 
-    public void TakeDamage(int damage) => CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth.Value);
     public void Heal(int amount) => CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth.Value);
+
+    public Stat GetResistanceTo(DamageType type)
+    {
+        return type switch
+        {
+            DamageType.Physical => PhysicalResistance,
+            DamageType.Fire => FireResistance,
+            DamageType.Cold => ColdResistance,
+            DamageType.Shock => ShockResistance,
+            DamageType.Toxin => PoisonResistance,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
+    }
+
+    public static float GetDamageMultiplier(float resistance)
+    {
+        return resistance >= 0.0f ? 100.0f / (100.0f + resistance) : 2.0f - 100.0f / (100.0f - resistance);
+    }
     
-    public void ConsumeMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana - amount, 0, MaxMana.Value);
-    public void RegenerateMana(int amount) => CurrentMana = Mathf.Clamp(CurrentMana + amount, 0, MaxMana.Value);
+    public int TakeDamage(Damage damage)
+    {
+        int takenDamage = damage.Amount.Value;
+        
+        damage.Amount.AssignModifier(new StatModifier(this, StatModifierType.Percentage, IncomingDamagePercentage.Value));
+        
+        if (!damage.IgnoresResistance)
+        {
+            float multiplier = GetDamageMultiplier(GetResistanceTo(damage.Type).Value);
+            takenDamage = Mathf.RoundToInt(takenDamage * multiplier);
+        }
+        CurrentHealth = Mathf.Clamp(CurrentHealth - takenDamage, 0, MaxHealth.Value);
+        return takenDamage;
+    }
+
+    public int ConsumeMana(int amount)
+    {
+        CurrentMana = Mathf.Clamp(CurrentMana - amount, 0, MaxMana.Value);
+        return CurrentMana;
+    }
+
+    public int RegenerateMana(int amount)
+    {
+        CurrentMana = Mathf.Clamp(CurrentMana + amount, 0, MaxMana.Value);
+        return CurrentMana;
+    }
 }

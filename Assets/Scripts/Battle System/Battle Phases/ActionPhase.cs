@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -11,7 +12,21 @@ public class ActionPhase : BattlePhase
 
     public override void Start()
     {
-        action = CurrentTurn.Actor.Brain.RequestAction(Battle, CurrentTurn.Actor);
+        List<BattleEvent> events = new();
+        Combatant actor = CurrentTurn.Actor;
+        
+        int manaRecovered = CurrentTurn.TicksSinceLastTurn * 2;
+        int oldMana = actor.Stats.CurrentMana;
+
+        int newMana = actor.Stats.RegenerateMana(manaRecovered);
+        events.Add(new ManaEvent(manaRecovered, oldMana, newMana, actor));
+
+        foreach (StatusEffect effect in actor.StatusEffects) effect.OnBeforeAction(Battle, events);
+        
+        events.Add(new PreActionEndEvent());
+        Context.Presenter.Play(Battle, events);
+        
+        action = CurrentTurn.Actor.Brain.RequestAction(Battle, actor);
     }
 
     public override void Stop()

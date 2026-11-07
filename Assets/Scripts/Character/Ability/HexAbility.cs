@@ -3,20 +3,16 @@ using System.Linq;
 
 public class HexAbility : Ability
 {
-    public Stat OnHitProcDamagePercentageIncrease { get; }
+    public Stat DurationPercentageIncrease { get; }
     
-    public HexAbility(string displayName, Combatant user, HexBaseStats baseStats) : base(displayName, user)
+    public HexAbility(string displayName, Combatant user, HexBaseStats baseStats) : base(displayName, user, baseStats)
     {
-        ManaCost = new Stat(baseStats.ManaCost);
-        OnHitProcDamagePercentageIncrease = new Stat(baseStats.OnHitProcDamagePercentageIncrease);
+        DurationPercentageIncrease = new Stat(baseStats.DurationPercentageIncrease);
+        BaseTags = AugmentTags.Offensive;
     }
 
     public override List<Combatant> GetValidTargets(Battle battle)
     {
         return battle.Combatants.Where(combatant => combatant.CombatantType != User.CombatantType).ToList();
-    }
-
-    public override void Execute(Battle battle, List<BattleEvent> events, Combatant target)
-    {
     }
 }

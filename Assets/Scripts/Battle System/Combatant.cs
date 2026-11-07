@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public enum CombatantType
 {
@@ -14,6 +15,7 @@ public class Combatant
     public IActionProvider Brain { get; private set; }
     public CombatantType CombatantType { get; private set; }
     public bool IsDead { get; private set; }
+    public List<StatusEffect> StatusEffects { get; private set; }
 
     public IReadOnlyList<Ability> Abilities { get; }
 
@@ -26,6 +28,7 @@ public class Combatant
         Brain = brain;
         CombatantType = combatantType;
         Abilities = BuildAbilities(abilityBlueprints, abilityFactory);
+        StatusEffects = new List<StatusEffect>();
     }
 
     public void SetName(string displayName) => DisplayName = displayName;
@@ -41,7 +44,29 @@ public class Combatant
         {
             abilityFactory.CreateAbility(abilityBlueprint, this);
         }
-
         return abilities;
+    }
+
+    public void AddStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect == null) return;
+        
+        StatusEffect existing = StatusEffects.FirstOrDefault(effect => effect.GetType() == statusEffect.GetType());
+        if (existing != null)
+        {
+            existing.OnRemove();
+            return;
+        }
+        
+        StatusEffects.Add(statusEffect);
+        statusEffect.OnApply();
+    }
+
+    public void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        if (!StatusEffects.Contains(statusEffect)) return;
+        
+        StatusEffects.Remove(statusEffect);
+        statusEffect.OnRemove();
     }
 }

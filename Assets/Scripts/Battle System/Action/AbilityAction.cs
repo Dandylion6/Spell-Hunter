@@ -14,5 +14,9 @@ public class AbilityAction : BattleAction
         Target = target;
     }
 
-    protected override void Execute(Battle battle, List<BattleEvent> events) => Ability.Execute(battle, events, Target);
+    protected override void Execute(Battle battle, List<BattleEvent> events)
+    {
+        Ability.Execute(battle, events, Target);
+        TurnCost = Ability.TurnCost.Value;
+    }
 }

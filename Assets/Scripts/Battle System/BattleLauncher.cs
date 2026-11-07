@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BattleLauncher : MonoBehaviour
 {
-    [SerializeField] private AbilityBaseStats abilityBaseStats;
+    [FormerlySerializedAs("abilityBaseStats")] [SerializeField] private AbilityBaseStatsConfig abilityBaseStatsConfig;
     [SerializeField] private BattleContext context;
     [SerializeField] private CharacterDefinition playerDefinition;
     [SerializeField] private PlayerActionController controller;
@@ -19,7 +20,7 @@ public class BattleLauncher : MonoBehaviour
     {
         // TEMP!
         if (Player == null) GenerateDummyPlayer();
-        if (abilityFactory == null) Initialize(new AbilityFactory(abilityBaseStats));
+        if (abilityFactory == null) Initialize(new AbilityFactory(abilityBaseStatsConfig));
 
         List<Combatant> combatants = new()
         {

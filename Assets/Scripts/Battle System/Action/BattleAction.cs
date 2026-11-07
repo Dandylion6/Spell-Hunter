@@ -7,6 +7,7 @@ public abstract class BattleAction
 {
     public string Name { get; private set; }
     public Combatant Actor { get; private set; }
+    public int TurnCost { get; protected set; } = TurnClock.ClockThreshold;
 
     public BattleAction(string name, Combatant actor)
     {
@@ -24,6 +25,17 @@ public abstract class BattleAction
         }
         
         Execute(battle, events);
+        
+        foreach (StatusEffect effect in Actor.StatusEffects)
+        {
+            if (effect.IsExpired)
+            {
+                Actor.StatusEffects.Remove(effect);
+                events.Add(new StatusEffectRemovedEvent(effect, Actor));
+                break;
+            }
+            effect.OnAfterAction(battle, events);
+        }
         
         events.Add(new ActionEndEvent());
         return events;

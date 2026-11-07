@@ -1,6 +1,5 @@
 using System.Data;
 using System.Linq;
-using UnityEngine;
 
 public class ClockPhase : BattlePhase
 {
@@ -14,6 +13,7 @@ public class ClockPhase : BattlePhase
     {
         Combatant nextActiveCombatant = Battle.Combatants
             .OrderBy(combatant => combatant.Clock.TicksTillReady(combatant.Stats.Speed.Value))
+            .ThenByDescending(combatant => combatant.Stats.Speed.Value)
             .FirstOrDefault();
 
         if (nextActiveCombatant == null) throw new NoNullAllowedException();
@@ -22,7 +22,7 @@ public class ClockPhase : BattlePhase
         foreach (Combatant combatant in Battle.Combatants)
             combatant.Clock.AddProgress(ticks, combatant.Stats.Speed.Value);
         
-        Context.BeginTurn(nextActiveCombatant);
+        Context.BeginTurn(nextActiveCombatant, ticks);
         phaseDuration.Start();
     }
 

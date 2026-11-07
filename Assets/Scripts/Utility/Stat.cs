@@ -2,27 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatModifierType
+{
+    /// <summary>
+    ///     Adds to the base value as a flat value.
+    /// </summary>
+    Flat,
+
+    /// <summary>
+    ///     Adds based on the flat value as percentage.
+    /// </summary>
+    Percentage,
+
+    /// <summary>
+    ///     Multiplies the value by an amount.
+    /// </summary>
+    Multiplier
+}
+
 public class StatModifier
 {
-    public enum ModifierType
-    {
-        /// <summary>
-        ///     Adds to the base value as a flat value.
-        /// </summary>
-        Flat,
-
-        /// <summary>
-        ///     Adds based on the flat value as percentage.
-        /// </summary>
-        Percentage,
-
-        /// <summary>
-        ///     Multiplies the value by an amount.
-        /// </summary>
-        Multiplier
-    }
-
-    public StatModifier(object source, ModifierType type, float value)
+    public StatModifier(object source, StatModifierType type, float value)
     {
         Source = source;
         Type = type;
@@ -30,7 +30,7 @@ public class StatModifier
     }
 
     public object Source { get; }
-    public ModifierType Type { get; }
+    public StatModifierType Type { get; }
     public float Value { get; }
 }
 
@@ -105,9 +105,9 @@ public class Stat
         foreach (StatModifier modifier in modifiers)
             switch (modifier.Type)
             {
-                case StatModifier.ModifierType.Flat: flat += modifier.Value; break;
-                case StatModifier.ModifierType.Percentage: percentage += modifier.Value; break;
-                case StatModifier.ModifierType.Multiplier: multiplier *= 1.0f + modifier.Value; break;
+                case StatModifierType.Flat: flat += modifier.Value; break;
+                case StatModifierType.Percentage: percentage += modifier.Value; break;
+                case StatModifierType.Multiplier: multiplier *= 1.0f + modifier.Value; break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

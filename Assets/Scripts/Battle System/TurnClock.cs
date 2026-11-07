@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TurnClock
 {
-    public const int ClockThreshold = 1000;
+    public const int ClockThreshold = 100;
     public int Progress { get; private set; }
 
     /// <summary>
@@ -24,6 +24,6 @@ public class TurnClock
         return remaining <= 0 ? 0 : (remaining + speed - 1) / speed;
     }
     
+    public void SpendTurn(int turnCost) => Progress -= turnCost;
     public void AddProgress(int ticks, int speed) => Progress +=  ticks * speed;
-    public void LoopClock() => Progress -= ClockThreshold;
 }

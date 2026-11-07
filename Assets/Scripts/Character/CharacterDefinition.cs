@@ -13,7 +13,7 @@ public class CharacterDefinition : ScriptableObject
     [SerializeField] private int coldResistance = 10;
     [SerializeField] private int shockResistance = 10;
     [SerializeField] private int poisonResistance = 10;
-    [SerializeField] private int speed = 20;
+    [SerializeField] [Range(1, 100)] private int speed = 20;
     [SerializeField] private List<AbilityPreset> abilities = new();
     
     public string DisplayName => displayName;

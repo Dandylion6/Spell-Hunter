@@ -3,6 +3,7 @@ using UnityEngine;
 public class Turn
 {
     public int Index { get; private set; }
+    public int TicksSinceLastTurn { get; private set; }
     
     /// <summary>
     ///     The combatant whose turn it currently is.
@@ -14,10 +15,11 @@ public class Turn
     /// </summary>
     public BattleAction Action { get; private set; }
 
-    public Turn(Combatant actor, int index)
+    public Turn(Combatant actor, int index,  int ticksSinceLastTurn)
     {
         Actor = actor;
         Index = index;
+        TicksSinceLastTurn = ticksSinceLastTurn;
     }
     
     public void SetAction(BattleAction action) => Action ??= action;
