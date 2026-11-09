@@ -17,14 +17,17 @@ public class ActionPhase : BattlePhase
         
         int manaRecovered = CurrentTurn.TicksSinceLastTurn * 2;
         int oldMana = actor.Stats.CurrentMana;
-
+        
         int newMana = actor.Stats.RegenerateMana(manaRecovered);
-        events.Add(new ManaEvent(manaRecovered, oldMana, newMana, actor));
+        if (newMana != oldMana)
+        {
+            events.Add(new ManaEvent(manaRecovered, oldMana, newMana, actor));
+        }
 
         foreach (StatusEffect effect in actor.StatusEffects) effect.OnBeforeAction(Battle, events);
         
         events.Add(new PreActionEndEvent());
-        Context.Presenter.Play(Battle, events);
+        Context.Presenter?.Play(Battle, events);
         
         action = CurrentTurn.Actor.Brain.RequestAction(Battle, actor);
     }

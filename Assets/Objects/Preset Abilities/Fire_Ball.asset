@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Fire Ball
   abilityType: 0
   augments:
-  - {fileID: 11400000, guid: f7e8d93de44946a45abd90cdbc6787ce, type: 2}
+  - {fileID: 11400000, guid: 2ac7e20afa73b8e4c84b119b78cbcc5b, type: 2}

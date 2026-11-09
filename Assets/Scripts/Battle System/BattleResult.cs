@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum BattleOutcome
 {
-    Unknown,
+    NotFinished,
     Victory,
     Defeat,
 }

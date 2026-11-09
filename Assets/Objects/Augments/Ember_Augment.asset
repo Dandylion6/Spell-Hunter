@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c7dfb877abe0a4981e4dc569d99e5f, type: 3}
+  m_Name: Ember_Augment
+  m_EditorClassIdentifier: Assembly-CSharp::EmberAugment
+  displayName: Ember
+  manaCost: 4
+  required: 7
+  additions: 48
+  onHitDamage: 10
+  damageType: 1
+  buffDuration: 2
+  outgoingPhysicalDamageIncrease: 20
+  incomingDamageIncrease: 10

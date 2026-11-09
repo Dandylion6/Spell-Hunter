@@ -18,9 +18,11 @@ public abstract class AbilityBaseStats
     [Header("Base Stats")]
     [SerializeField] private int manaCost = 1;
     [SerializeField] [Range(20, 200)] private int turnCost = 100;
+    [SerializeField] [Range(1, 10)] private int augmentSlots = 4;
     
     public int ManaCost => manaCost;
     public int TurnCost => turnCost;
+    public int AugmentSlots => augmentSlots;
 }
 
 [System.Serializable]

@@ -11,37 +11,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a502cfaa-23e7-40be-b21b-6a7632a45bad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/indexLayout.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Objects/Augments/Flame.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Objects/Augments/Flame.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Objects/Character Stats/Player.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Character Stats/Player.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Regular.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Regular.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Slow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Slow.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Speedy.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Speedy.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Objects/Configs/Base_Ability_Stats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Configs/Base_Ability_Stats.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Objects/Preset Abilities/Fire_Ball.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Preset Abilities/Fire_Ball.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/AbilityAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/AbilityAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ActionPhase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ClockPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ExecutionPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle Phases/ExecutionPhase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Battle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleLauncher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleResult.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Turn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Turn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/TurnClock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/TurnClock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Ability.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStats.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityPreset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityPreset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Augment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Augment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/AugmentDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/AugmentDefinition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/BoonAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/BoonAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/HexAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/HexAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/ShotAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/ShotAbility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Elemental/EmberAugment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Elemental/EmberAugment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/ElementalAugment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/ElementalAugment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/TestBrain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Actors/TestBrain.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Burn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Burn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/StatusEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/StatusEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/AbilityButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/AbilityButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/CombatantNaming.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/CombatantNaming.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +54,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1eb9db207454431c84a47bcd81e79c3746ae00/ee/b3360573/NullReferenceException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5016c3a47c2a4a0cbfa8e12eb592279ba6a600/7b/2310ce6b/BuildPipelineInterfaces.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/00/6c18beff/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d303c2bf72cd4cec95665b89c457d265d2b8ef3ed6da17cd4f85587c2f9de7/System.Linq.cs" root0="SKIP_HIGHLIGHTING" />
@@ -77,6 +77,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/CombatantNaming.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@57d0e36f6123/InputSystem/Editor/AssetEditor/InputActionTreeView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />

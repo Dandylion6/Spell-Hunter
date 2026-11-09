@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BattleLauncher : MonoBehaviour
 {
-    [FormerlySerializedAs("abilityBaseStats")] [SerializeField] private AbilityBaseStatsConfig abilityBaseStatsConfig;
+    [SerializeField] private AbilityBaseStatsConfig abilityBaseStatsConfig;
     [SerializeField] private BattleContext context;
     [SerializeField] private CharacterDefinition playerDefinition;
     [SerializeField] private PlayerActionController controller;
@@ -18,25 +15,29 @@ public class BattleLauncher : MonoBehaviour
 
     public void RequestBattle(Encounter encounter)
     {
-        // TEMP!
-        if (Player == null) GenerateDummyPlayer();
-        if (abilityFactory == null) Initialize(new AbilityFactory(abilityBaseStatsConfig));
-
         List<Combatant> combatants = new()
         {
-            new Combatant(Player?.Stats, Player?.Controller, CombatantType.Ally, new List<AbilityBlueprint>(), abilityFactory),
+            new Combatant(Player?.Stats, Player?.Controller, CombatantType.Ally, playerDefinition.ToAbilityBlueprints(),
+                abilityFactory),
         };
 
         // PS: I hate the LINQ-expression for this code; it's unreadable.
         foreach (CharacterDefinition definition in encounter.Enemies)
         {
             CharacterStats character = new(definition);
-            List<AbilityBlueprint> abilityBlueprints = definition.Abilities.Select(preset => preset.ToBlueprint()).ToList();
-            combatants.Add(new Combatant(character, definition.GetBrain(), CombatantType.Opponent, abilityBlueprints, abilityFactory));
+            List<AbilityBlueprint> blueprints = definition.ToAbilityBlueprints();
+            Combatant combatant = new(character, definition.GetBrain(), CombatantType.Opponent, blueprints, abilityFactory);
+            combatants.Add(combatant);
         }
 
         Battle newBattle = new(combatants);
         context.BeginCombatLoop(newBattle);
+    }
+
+    private void Awake()
+    {
+        if (Player == null) GenerateDummyPlayer();
+        if (abilityFactory == null) Initialize(new AbilityFactory(abilityBaseStatsConfig));
     }
 
     private void GenerateDummyPlayer()

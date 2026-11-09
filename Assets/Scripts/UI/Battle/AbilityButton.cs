@@ -1,32 +1,27 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AbilityButton : ActionSessionView
+public class AbilityButton : MonoBehaviour
 {
-    [SerializeField] private BattleLauncher launcher;
+    [SerializeField] private Button button;
+    [SerializeField] private TMP_Text text;
 
     private Ability ability;
-
-    private void Start()
-    {
-        ability = new HexAbility("File Ball", null, new HexBaseStats());
-        Bind(launcher.Player.Controller as PlayerActionController);
-    }
+    private ActionSelectionSession session;
 
     public void OnClick()
     {
-        ActiveSession?.SelectAbility(ability);
+        if (ability == null) return;
+        session?.SelectAbility(ability);
     }
 
-    protected override void Refresh()
+    public void Initialize(Ability newAbility, ActionSelectionSession newSession)
     {
-    }
-
-    protected override void OnSessionAttached(ActionSelectionSession newSession)
-    {
-        Debug.Log("Ready for action");
-    }
-
-    protected override void OnSessionDetached(ActionSelectionSession oldSession)
-    {
+        ability = newAbility;
+        session = newSession;
+        
+        button.interactable = ability.CheckStatus(newSession.Battle) == AbilityStatus.Ready;
+        text.text = ability.DisplayName;
     }
 }

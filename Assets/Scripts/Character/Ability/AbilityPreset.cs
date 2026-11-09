@@ -19,5 +19,5 @@ public class AbilityPreset : ScriptableObject
     public AbilityType AbilityType => abilityType;
     public IReadOnlyList<AugmentDefinition> Augments => augments;
 
-    public AbilityBlueprint ToBlueprint() => new AbilityBlueprint(displayName, abilityType, augments);
+    public AbilityBlueprint ToBlueprint() => new(displayName, abilityType, augments);
 }

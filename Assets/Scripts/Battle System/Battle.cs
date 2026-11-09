@@ -11,35 +11,37 @@ using System.Linq;
 /// </remarks>
 public class Battle
 {
-    public const int MaxOpponents = 4;
+    public const int MaxOpponents = 3;
 
     public List<Combatant> Combatants { get; }
-    public event Action<BattleResult> Ended;
 
     public Battle(IReadOnlyList<Combatant> combatants)
     {
         BattleValidityCheck(combatants);
         Combatants = combatants.ToList();
 
-        foreach (Combatant combatant in Combatants) ApplyAbilityPassives(combatant);
+        foreach (Ability ability in Combatants.SelectMany(combatant => combatant.Abilities))
+        {
+            ability.OnBattleStart(this);
+        }
         CombatantNaming.Assign(Combatants);
     }
 
     private static void BattleValidityCheck(IReadOnlyList<Combatant> combatants)
     {
         if (combatants == null)
-            throw new System.ArgumentNullException(nameof(combatants));
+            throw new ArgumentNullException(nameof(combatants));
 
         if (combatants.Any(combatant => combatant == null))
-            throw new System.ArgumentException("Null combatant!", nameof(combatants));
+            throw new ArgumentException("Null combatant!", nameof(combatants));
 
         int allyCount = combatants.Count(combatant => combatant.CombatantType == CombatantType.Ally);
         if (allyCount < 1)
-            throw new System.ArgumentException("There must be at least one ally in battle!", nameof(combatants));
+            throw new ArgumentException("There must be at least one ally in battle!", nameof(combatants));
 
         int opponentCount = combatants.Count(combatant => combatant.CombatantType == CombatantType.Opponent);
         if (opponentCount is < 1 or > MaxOpponents)
-            throw new System.ArgumentException($"Battle needs 1 - {MaxOpponents} opponents!", nameof(combatants));
+            throw new ArgumentException($"Battle needs 1 - {MaxOpponents} opponents!", nameof(combatants));
     }
 
     /// <summary>
@@ -51,23 +53,12 @@ public class Battle
         if (Combatants.Contains(combatant)) return;
 
         Combatants.Add(combatant);
-        ApplyAbilityPassives(combatant);
+        foreach (Ability ability in combatant.Abilities) ability.OnBattleStart(this);
         
         CombatantNaming.Assign(Combatants);
     }
 
-    public void Kill(Combatant combatant)
-    {
-        if (combatant == null) return;
-        if (!Combatants.Contains(combatant)) return;
-        
-        combatant.MarkAsDead();
-        
-        if (HasLivingMembers(combatant.CombatantType)) return;
-
-        foreach (Combatant toRemove in Combatants) RemoveAbilityPassives(toRemove);
-        Ended?.Invoke(BuildResult());
-    }
+    public BattleResult EvaluateBattleResult() => BuildResult();
 
     public List<Combatant> GetTeammatesOfUser(Combatant user)
     {
@@ -93,16 +84,6 @@ public class Battle
     {
         return Combatants.Where(combatant => combatant.CombatantType == type).Any(combatant => !combatant.IsDead);
     }
-    
-    private void ApplyAbilityPassives(Combatant combatant)
-    {
-        foreach (Ability ability in combatant.Abilities) ability.OnBattleStart(this);
-    }
-
-    private void RemoveAbilityPassives(Combatant combatant)
-    {
-        foreach (Ability ability in combatant.Abilities) ability.OnBattleEnd(this);
-    }
 
     private BattleResult BuildResult()
     {
@@ -113,6 +94,6 @@ public class Battle
 
         return !HasLivingMembers(CombatantType.Ally)
             ? new BattleResult(BattleOutcome.Defeat)
-            : new BattleResult(BattleOutcome.Unknown);
+            : new BattleResult(BattleOutcome.NotFinished);
     }
 }

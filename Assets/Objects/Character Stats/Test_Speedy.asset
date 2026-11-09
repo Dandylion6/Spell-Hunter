@@ -15,11 +15,11 @@ MonoBehaviour:
   displayName: Swift Boy
   maxHealth: 70
   maxMana: 40
-  physicalResistance: 10
+  physicalResistance: -10
   fireResistance: 10
   coldResistance: 10
   shockResistance: 10
   poisonResistance: 10
-  speed: 60
+  speed: 45
   abilities:
   - {fileID: 11400000, guid: bfc0e40b10e775d41b71303f19da6e36, type: 2}

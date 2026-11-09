@@ -12,7 +12,45 @@ public class BattleContext : MonoBehaviour
     public ActionPhase ActionPhase { get; private set; }
     public ExecutionPhase ExecutionPhase { get; private set; }
 
+    public event Action<Battle> LoopStarted;
+    public event Action<Turn> TurnChanged;
+    public event Action<BattleResult> LoopEnded;
+    
     private BattlePhase currentPhase;
+    
+    public void SetPresenter(IBattlePresenter presenter) => Presenter = presenter;
+    
+    public void BeginCombatLoop(Battle battle)
+    {
+        if (IsInCombat)
+            throw new InvalidOperationException("A Battle is already in session!");
+
+        Battle = battle;
+        currentPhase = ClockPhase;
+        currentPhase.Start();
+
+        LoopStarted?.Invoke(battle);
+    }
+    
+    public void EndCombatLoop(BattleResult result)
+    {
+        if (!IsInCombat) return;
+
+        currentPhase.Stop();
+        currentPhase = null;
+        
+        CurrentTurn = null;
+        Battle = null;
+        
+        LoopEnded?.Invoke(result);
+    }
+
+    public void BeginTurn(Combatant combatant, int ticks)
+    {
+        int nextIndex = CurrentTurn == null ? 0 : CurrentTurn.Index + 1;
+        CurrentTurn = new Turn(combatant, nextIndex, ticks);
+        TurnChanged?.Invoke(CurrentTurn);
+    }
     
     private void Awake()
     {
@@ -30,44 +68,6 @@ public class BattleContext : MonoBehaviour
         if (currentPhase.ShouldSwitchTo(out BattlePhase nextPhase)) SwitchTo(nextPhase);
     }
 
-    public event Action<Battle> LoopStarted;
-    public event Action<BattleResult> LoopEnded;
-
-    public void BeginCombatLoop(Battle battle)
-    {
-        if (IsInCombat)
-            throw new InvalidOperationException("A Battle is already in session!");
-
-        Battle = battle;
-        Battle.Ended += EndCombatLoop;
-        
-        currentPhase = ClockPhase;
-        currentPhase.Start();
-
-        LoopStarted?.Invoke(battle);
-    }
-
-    public void BeginTurn(Combatant combatant, int ticks)
-    {
-        int nextIndex = CurrentTurn == null ? 0 : CurrentTurn.Index + 1;
-        CurrentTurn = new Turn(combatant, nextIndex, ticks);
-    }
-
-    private void EndCombatLoop(BattleResult result)
-    {
-        if (!IsInCombat) return;
-            
-        Battle.Ended -= EndCombatLoop;
-        
-        currentPhase.Stop();
-        currentPhase = null;
-        
-        CurrentTurn = null;
-        Battle = null;
-        
-        LoopEnded?.Invoke(result);
-    }
-
     /// <summary>
     ///     Handles switching to a different <see cref="BattlePhase" />.
     /// </summary>
@@ -76,6 +76,8 @@ public class BattleContext : MonoBehaviour
     /// </param>
     private void SwitchTo(BattlePhase nextPhase)
     {
+        if (!IsInCombat) return; // Can't allow switching if there is no battle.
+        
         // This keeps the change clear.
         BattlePhase oldPhase = currentPhase;
         currentPhase = nextPhase;

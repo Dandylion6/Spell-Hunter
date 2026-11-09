@@ -15,13 +15,17 @@ MonoBehaviour:
   shotBaseStats:
     manaCost: 1
     turnCost: 70
+    augmentSlots: 4
     physicalDamage: 30
     accuracy: 95
-    onHitProcChance: 30
+    statusProcChance: 40
+    onHitBleedChance: 20
   hexBaseStats:
     manaCost: 5
     turnCost: 90
+    augmentSlots: 4
     durationPercentageIncrease: 50
   boonBaseStats:
     manaCost: 4
     turnCost: 110
+    augmentSlots: 4

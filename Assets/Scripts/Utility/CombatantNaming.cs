@@ -8,7 +8,7 @@ public static class CombatantNaming
         foreach (Combatant combatant in combatants)
         {
             string baseName = combatant.Stats.BaseName;
-            totals[baseName] += 1;
+            totals[baseName] = totals.GetValueOrDefault(baseName) + 1;
         }
 
         Dictionary<string, int> seen = new();
@@ -21,7 +21,7 @@ public static class CombatantNaming
             if (total > 1) AssignPrefix(combatant, index);
             else combatant.SetName(combatant.Stats.BaseName);
             
-            seen.Add(combatant.Stats.BaseName, total);
+            seen[combatant.Stats.BaseName] = ++index;
         }
     }
 

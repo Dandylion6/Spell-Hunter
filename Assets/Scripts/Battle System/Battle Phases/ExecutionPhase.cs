@@ -11,21 +11,15 @@ public class ExecutionPhase : BattlePhase
     {
         BattleAction action = Context.CurrentTurn.Action;
         List<BattleEvent> events = action.Execute(Battle);
-
-        foreach (BattleEvent battleEvent in events)
+        
+        BattleResult result = Context.Battle.EvaluateBattleResult();
+        if (result.Outcome != BattleOutcome.NotFinished)
         {
-            switch (battleEvent)
-            {
-                case DamageEvent damageEvent:
-                    Debug.Log($"{action.Actor} has dealt {damageEvent.Damage} {damageEvent.Type} damage to {damageEvent.Target}: HP {damageEvent.HealthBeforeDamage} -> {damageEvent.HealthAfterDamage}");
-                    break;
-                case ActionEndEvent endEvent:
-                    Debug.Log("Action has ended");
-                    break;
-            }
+            events.Add(new BattleEndedEvent(result));
+            Context.EndCombatLoop(result);
         }
         
-        Context.Presenter.Play(Battle, events);
+        Context.Presenter?.Play(Battle, events);
     }
 
     public override void Stop()
@@ -38,7 +32,7 @@ public class ExecutionPhase : BattlePhase
     public override bool ShouldSwitchTo(out BattlePhase nextPhase)
     {
         nextPhase = null;
-        if (Context.Presenter.IsPlaying) return false;
+        if (Context.Presenter is { IsPlaying: true }) return false;
 
         // Start the cycle again.
         nextPhase = Context.ClockPhase;

@@ -14,6 +14,13 @@ public abstract class ElementalAugment : AugmentDefinition
         }
         
         context.Damage.Add(new Damage(damageType, onHitDamage, DamageTags.OnHit | DamageTags.Elemental));
+
+        if (context.Ability is ShotAbility shotAbility)
+        {
+            bool proc = Random.Range(0, 100) < shotAbility.StatusProcChance.Value;
+            if (!proc) return;
+        }
+        
         CollectStatusEffect(context);
     }
     

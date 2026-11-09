@@ -1,33 +1,26 @@
-using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TargetButton : ActionSessionView
+public class TargetButton : MonoBehaviour
 {
-    [SerializeField] private BattleContext context;
-    [SerializeField] private PlayerActionController controller;
+    [SerializeField] private Button button;
+    [SerializeField] private TMP_Text text;
 
     private Combatant target;
-    
-    private void Start()
-    {
-        Bind(controller);
-    }
+    private ActionSelectionSession session;
 
     public void OnClick()
     {
-        ActiveSession?.SelectTarget(target);
+        if (target == null) return;
+        session?.SelectTarget(target);
     }
 
-    protected override void Refresh()
+    public void Initialize(Combatant newTarget, ActionSelectionSession newSession)
     {
-    }
-
-    protected override void OnSessionAttached(ActionSelectionSession newSession)
-    {
-        target = context.Battle.GetEnemiesOfUser(newSession.User).FirstOrDefault();
-    }
-
-    protected override void OnSessionDetached(ActionSelectionSession oldSession)
-    {
+        target = newTarget;
+        session = newSession;
+        
+        text.text = newTarget.DisplayName;
     }
 }

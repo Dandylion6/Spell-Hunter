@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Big Boy
   maxHealth: 130
   maxMana: 40
-  physicalResistance: 10
+  physicalResistance: 20
   fireResistance: 10
   coldResistance: 10
   shockResistance: 10

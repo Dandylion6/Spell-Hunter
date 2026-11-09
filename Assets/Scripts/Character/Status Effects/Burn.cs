@@ -15,7 +15,7 @@ public class Burn : StatusEffect
     
     public override bool IsExpired { get; }
     
-    public Burn(Combatant target) : base(target)
+    public Burn(Combatant target, string displayName) : base(target, displayName)
     {
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Character Definition", menuName = "Objects/Character Definition")]
@@ -26,6 +27,13 @@ public class CharacterDefinition : ScriptableObject
     public int PoisonResistance => poisonResistance;
     public int Speed => speed;
     public IReadOnlyList<AbilityPreset> Abilities => abilities;
+
+    public List<AbilityBlueprint> ToAbilityBlueprints()
+    {
+        List<AbilityBlueprint> blueprints = new(abilities.Count);
+        blueprints.AddRange(abilities.Select(ability => ability.ToBlueprint()));
+        return blueprints;
+    }
 
     public IActionProvider GetBrain()
     {

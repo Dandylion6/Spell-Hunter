@@ -2,12 +2,14 @@ using System.Collections.Generic;
 
 public abstract class StatusEffect
 {
+    public string DisplayName { get; }
     public Combatant Target { get; }
     public abstract bool IsExpired { get; }
 
-    public StatusEffect(Combatant target)
+    public StatusEffect(Combatant target, string displayName)
     {
         Target = target;
+        DisplayName = displayName;
     }
     
     public virtual void OnApply() { }
@@ -28,7 +30,7 @@ public abstract class BasicBuff : StatusEffect
     public int MaxTurns { get; }
     public int TurnsRemaining { get; private set; }
     
-    protected BasicBuff(Combatant target, int turns) : base(target)
+    protected BasicBuff(Combatant target, string displayName, int turns) : base(target, displayName)
     {
         MaxTurns = turns;
         TurnsRemaining = turns;

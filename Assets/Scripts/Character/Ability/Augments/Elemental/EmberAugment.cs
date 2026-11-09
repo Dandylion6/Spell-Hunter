@@ -26,7 +26,7 @@ public class EmberBuff : BasicBuff
     public int IncomingDamageIncrease { get; }
 
     public EmberBuff(Combatant target, int duration, int outgoingPhysicalDamageIncrease, int incomingDamageIncrease) :
-        base(target, duration)
+        base(target, "Ember Buff", duration)
     {
         OutgoingPhysicalDamageIncrease = outgoingPhysicalDamageIncrease;
         IncomingDamageIncrease = incomingDamageIncrease;
