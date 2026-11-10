@@ -50,7 +50,7 @@ public class Combatant
         StatusEffect existing = StatusEffects.FirstOrDefault(effect => effect.GetType() == statusEffect.GetType());
         if (existing != null)
         {
-            existing.OnRemove();
+            existing.OnRefresh(statusEffect);
             return;
         }
 

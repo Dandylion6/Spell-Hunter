@@ -1,14 +1,25 @@
-public abstract class BattleEvent { }
-public class InvalidActionEvent :  BattleEvent { }
-public class ActionEndEvent : BattleEvent { }
-public class PreActionEndEvent : BattleEvent { }
+public abstract class BattleEvent
+{
+}
+
+public class InvalidActionEvent : BattleEvent
+{
+}
+
+public class ActionEndEvent : BattleEvent
+{
+}
+
+public class PreActionEndEvent : BattleEvent
+{
+}
 
 public class AbilityUsedEvent : BattleEvent
 {
     public Combatant Source { get; }
     public Combatant Target { get; }
     public AbilityAction Action { get; }
-    
+
     public AbilityUsedEvent(Combatant source, Combatant target, AbilityAction action)
     {
         Source = source;
@@ -20,7 +31,7 @@ public class AbilityUsedEvent : BattleEvent
 public class BattleEndedEvent : BattleEvent
 {
     public BattleResult Result { get; }
-    
+
     public BattleEndedEvent(BattleResult result) => Result = result;
 }
 
@@ -49,8 +60,32 @@ public class DamageEvent : BattleEvent
     public int HealthAfterDamage { get; }
     public Combatant Source { get; }
     public Combatant Target { get; }
-    
-    public DamageEvent(DamageTags tags, DamageType type, int damage, int healthBefore, int healthAfter, Combatant source, Combatant target)
+
+    public DamageEvent(DamageTags tags, DamageType type, int damage, int healthBefore, int healthAfter,
+        Combatant source, Combatant target)
+    {
+        Tags = tags;
+        Type = type;
+        Damage = damage;
+        HealthBeforeDamage = healthBefore;
+        HealthAfterDamage = healthAfter;
+        Source = source;
+        Target = target;
+    }
+}
+
+public class DamageFromStatusEvent : BattleEvent
+{
+    public DamageTags Tags { get; }
+    public DamageType Type { get; }
+    public int Damage { get; }
+    public int HealthBeforeDamage { get; }
+    public int HealthAfterDamage { get; }
+    public StatusEffect Source { get; }
+    public Combatant Target { get; }
+
+    public DamageFromStatusEvent(DamageTags tags, DamageType type, int damage, int healthBefore, int healthAfter,
+        StatusEffect source, Combatant target)
     {
         Tags = tags;
         Type = type;

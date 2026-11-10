@@ -17,7 +17,7 @@ public abstract class Ability
     public Stat ManaCost { get; protected set; }
     public Stat TurnCost { get; protected set; }
     public AugmentTags BaseTags { get; protected set; }
-    
+
     public IReadOnlyList<Augment> Augments => augments;
     private readonly Augment[] augments;
 
@@ -27,10 +27,10 @@ public abstract class Ability
         User = user;
         TurnCost = new Stat(baseStats.TurnCost);
         ManaCost = new Stat(baseStats.ManaCost);
-        
+
         augments = new Augment[baseStats.AugmentSlots];
     }
-    
+
     public AbilityStatus CheckStatus(Battle battle)
     {
         if (User.Stats.CurrentMana < ManaCost.Value) return AbilityStatus.InsufficientMana;
@@ -49,7 +49,7 @@ public abstract class Ability
         for (int slot = 0; slot < augments.Length; ++slot)
         {
             if (augments[slot] != null) continue;
-            
+
             ApplyAugment(augment, slot);
             return;
         }
@@ -59,35 +59,35 @@ public abstract class Ability
     {
         if (augment == null) return;
         if (!augment.Definition.IsCompatibleWith(this)) return;
-        
+
         if (augments.Contains(augment)) return;
         if (augments[slot] != null) return;
-        
+
         augment.AttachToAbility(this);
         augments[slot] = augment;
     }
-    
+
     public void RemoveAugment(Augment augment)
     {
         for (int slot = 0; slot < augments.Length; ++slot)
         {
             if (augment != augments[slot]) continue;
-            
+
             RemoveAugment(slot);
             return;
         }
     }
-    
+
     public void RemoveAugment(int slot)
     {
         if (slot < 0) return;
         if (slot > augments.Length - 1) return;
         if (augments[slot] == null) return;
-        
+
         augments[slot].DetachFromAbility();
         augments[slot] = null;
     }
-    
+
     public abstract List<Combatant> GetValidTargets(Battle battle);
 
     public bool IsValidTarget(Battle battle, Combatant target)
@@ -100,7 +100,7 @@ public abstract class Ability
     public void Execute(Battle battle, List<BattleEvent> events, Combatant target)
     {
         CastContext context = new(this, battle, target);
-        
+
         int oldMana = User.Stats.CurrentMana;
         int newMana = User.Stats.ConsumeMana(ManaCost.Value);
         events.Add(new ManaEvent(-ManaCost.Value, oldMana, newMana, User));
@@ -111,9 +111,9 @@ public abstract class Ability
 
             foreach (Augment augment in augments) augment?.OnCast(context);
             foreach (StatusEffect effect in User.StatusEffects) effect.OnCast(context);
-            
+
             ApplyCastRules(context);
-            
+
             foreach (Augment augment in augments) augment?.OnModify(context);
             foreach (StatusEffect effect in User.StatusEffects) effect.OnModify(context);
 
@@ -137,9 +137,15 @@ public abstract class Ability
     {
         foreach (Augment augment in Augments) augment?.OnBattleEnd(battle);
     }
-    
-    protected virtual void BuildScaffold(CastContext context) { }
-    protected virtual void ApplyCastRules(CastContext context) { }
+
+    protected virtual void BuildScaffold(CastContext context)
+    {
+    }
+
+    protected virtual void ApplyCastRules(CastContext context)
+    {
+    }
+
     protected virtual bool CanHit(CastContext context) => true;
 
     protected virtual void Resolve(CastContext context, List<BattleEvent> events)
@@ -148,14 +154,14 @@ public abstract class Ability
         {
             context.Ability.User.Stats.Heal(heal.Amount.Value);
         }
-        
+
         foreach (Damage damage in context.Damage.Where(damage => damage.Tags.HasFlag(DamageTags.OnHit)))
         {
             int healthBefore = context.Target.Stats.CurrentHealth;
             int damageTaken = context.Target.Stats.TakeDamage(damage);
-            int healthAfter = context.Target.Stats.CurrentHealth;
-            
-            events.Add(new DamageEvent(damage.Tags, damage.Type,  damageTaken, healthBefore, healthAfter, User, context.Target));
+
+            events.Add(new DamageEvent(damage.Tags, damage.Type, damageTaken, healthBefore,
+                context.Target.Stats.CurrentHealth, User, context.Target));
         }
 
         foreach (StatusEffect effect in context.StatusEffects)

@@ -44,9 +44,9 @@ public class ShotBaseStats : AbilityBaseStats
 public class HexBaseStats : AbilityBaseStats
 {
     [Header("Hex Stats")]
-    [SerializeField] private int durationPercentageIncrease = 50;
+    [SerializeField] private int elementalDamageIncrease = 30;
     
-    public int DurationPercentageIncrease => durationPercentageIncrease;
+    public int ElementalDamageIncrease => elementalDamageIncrease;
 }
 
 [System.Serializable]

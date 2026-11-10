@@ -70,6 +70,10 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
                     Log(
                         $"{damageEvent.Source.DisplayName} has dealt {damageEvent.Damage} {damageEvent.Type} damage to {damageEvent.Target.DisplayName}: HP {damageEvent.HealthBeforeDamage} -> {damageEvent.HealthAfterDamage}");
                     break;
+                case DamageFromStatusEvent damageEvent:
+                    Log(
+                        $"{damageEvent.Target.DisplayName} was hurt by {damageEvent.Source.DisplayName} at {damageEvent.Damage} {damageEvent.Type} damage: HP {damageEvent.HealthBeforeDamage} -> {damageEvent.HealthAfterDamage}");
+                    break;
                 case BattleEndedEvent battleEndedEvent:
                     switch (battleEndedEvent.Result.Outcome)
                     {
