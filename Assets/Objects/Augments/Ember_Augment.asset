@@ -18,6 +18,14 @@ MonoBehaviour:
   additions: 48
   onHitDamage: 10
   damageType: 1
-  buffDuration: 2
-  outgoingPhysicalDamageIncrease: 20
-  incomingDamageIncrease: 10
+  burn:
+    stackFireDamage: 3
+    stackPhysicalResistMelt: 6
+    maxPhysicalResistMelt: 30
+    stackTurns: 4
+    maxStacks: 2
+    stacksOnProc: 1
+  buff:
+    buffTurns: 3
+    outgoingPhysicalDamagePercent: 25
+    incomingDamagePercent: 10

@@ -11,18 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a502cfaa-23e7-40be-b21b-6a7632a45bad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs/FervorBuff.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs/FervorBuff.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spell Hunter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Slow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Character Stats/Test_Slow.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Action/BattleEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/Combatant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/AbilityBaseStatsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Elemental/EmberAugment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/Augments/Elemental/EmberAugment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/HexAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Ability/HexAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Burn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Burn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/StatusEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/StatusEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Objects/Augments/Ember_Augment.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Augments/Ember_Augment.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle System/BattleContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs/FervorBuff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs/FervorBuff.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/BattleUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Battle/BattleUI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,11 +50,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/CharacterDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/Buffs/FervorBuff.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Status Effects/StatusEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Battle/CombatantUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Battle/TargetButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/CombatantNaming.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/Stat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@57d0e36f6123/InputSystem/Editor/AssetEditor/InputActionTreeView.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -70,61 +63,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.000000000000675" />
-      <entry key="S5" value="1.000031609451993" />
-      <entry key="S10" value="1.0134072166922634" />
-      <entry key="S30" value="2.3713953959058562" />
-      <entry key="S60" value="7.831842522813709" />
-      <entry key="M2" value="24.110283222294278" />
-      <entry key="M5" value="78.53721228889296" />
-      <entry key="M10" value="155.89980630146798" />
-      <entry key="M15" value="216.008538442694" />
-      <entry key="M30" value="350.38731245895644" />
-      <entry key="H1" value="589.6214611734586" />
-      <entry key="H2" value="1074.8698358303097" />
-      <entry key="H4" value="1995.0071181034714" />
-      <entry key="D1" value="6321.550641851012" />
-      <entry key="W1" value="8689.031075114674" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.1229679090943105E-99" />
+      <entry key="S2" value="3.48809797685723E-25" />
+      <entry key="S5" value="3.265691079983016E-10" />
+      <entry key="S10" value="4.240585721846694E-5" />
+      <entry key="S30" value="0.197271049903122" />
+      <entry key="S60" value="1.875578355590716" />
+      <entry key="M2" value="6.066941364311404" />
+      <entry key="M5" value="16.588739930837374" />
+      <entry key="M10" value="47.68664559672457" />
+      <entry key="M15" value="94.0312321546073" />
+      <entry key="M30" value="245.23558818325566" />
+      <entry key="H1" value="518.698183491931" />
+      <entry key="H2" value="1028.0204185967857" />
+      <entry key="H4" value="1968.6957053176795" />
+      <entry key="D1" value="6413.6700308541185" />
+      <entry key="W1" value="8887.08395890391" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.567316092726974E-52" />
-      <entry key="MS500" value="4.807240707658453E-11" />
-      <entry key="S2" value="0.00263318600599763" />
-      <entry key="S5" value="0.09509296712424781" />
-      <entry key="S10" value="0.3853479518826944" />
-      <entry key="S30" value="1.894629548101306" />
-      <entry key="S60" value="4.749722629906619" />
-      <entry key="M2" value="11.905783147830377" />
-      <entry key="M5" value="33.6071721422339" />
-      <entry key="M10" value="61.4703099092011" />
-      <entry key="M15" value="83.63499599364413" />
-      <entry key="M30" value="141.74014334375894" />
-      <entry key="H1" value="245.94132752418867" />
-      <entry key="H2" value="426.4486118282777" />
-      <entry key="H4" value="737.5382269282941" />
-      <entry key="D1" value="2077.222244548498" />
-      <entry key="W1" value="2780.2737175899297" />
+      <entry key="MS100" value="1.000013100668891" />
+      <entry key="MS500" value="1.1055501109279726" />
+      <entry key="S2" value="1.5699866363467305" />
+      <entry key="S5" value="1.7986304584333237" />
+      <entry key="S10" value="1.8936749571739229" />
+      <entry key="S30" value="2.0185959358193912" />
+      <entry key="S60" value="2.4500556828955955" />
+      <entry key="M2" value="3.6179435426235935" />
+      <entry key="M5" value="9.534068251516146" />
+      <entry key="M10" value="28.225155038420606" />
+      <entry key="M15" value="52.00590975195288" />
+      <entry key="M30" value="123.32386272877895" />
+      <entry key="H1" value="245.84693611393172" />
+      <entry key="H2" value="445.3946292067547" />
+      <entry key="H4" value="773.5864401793904" />
+      <entry key="D1" value="2165.1646328599763" />
+      <entry key="W1" value="2903.863402411121" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="4.026818575356735E-5" />
-      <entry key="MS500" value="0.1321272550872159" />
-      <entry key="S2" value="0.6049357799564367" />
-      <entry key="S5" value="0.9023508106745614" />
-      <entry key="S10" value="1.2792131561338347" />
-      <entry key="S30" value="4.172314779595678" />
-      <entry key="S60" value="12.462395846377786" />
-      <entry key="M2" value="35.85956548572018" />
-      <entry key="M5" value="111.95773516276726" />
-      <entry key="M10" value="217.18977857344723" />
-      <entry key="M15" value="299.4761267117829" />
-      <entry key="M30" value="491.98242928708646" />
-      <entry key="H1" value="835.4341240721892" />
-      <entry key="H2" value="1501.2030966539085" />
-      <entry key="H4" value="2732.443112021351" />
-      <entry key="D1" value="8398.72420379627" />
-      <entry key="W1" value="11469.295466117028" />
+      <entry key="MS100" value="3.7010884693576676E-4" />
+      <entry key="MS500" value="0.24194417947501895" />
+      <entry key="S2" value="1.1093448701843156" />
+      <entry key="S5" value="1.5710935833468849" />
+      <entry key="S10" value="1.7709951363202956" />
+      <entry key="S30" value="2.1671342355857792" />
+      <entry key="S60" value="4.279544963748704" />
+      <entry key="M2" value="9.63196171917214" />
+      <entry key="M5" value="26.05774172345588" />
+      <entry key="M10" value="75.81809889107741" />
+      <entry key="M15" value="145.92352927232633" />
+      <entry key="M30" value="368.42669610893324" />
+      <entry key="H1" value="764.4131787571922" />
+      <entry key="H2" value="1473.2936298403943" />
+      <entry key="H4" value="2742.17481633758" />
+      <entry key="D1" value="8578.783946108846" />
+      <entry key="W1" value="11790.937624767748" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -139,34 +132,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to": "Unity Editor",
-    "DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider": "Unity Editor",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Unity Attach To.Attach to.executor": "Debug",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeLensConfigurable",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to&quot;: &quot;Unity Editor&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider&quot;: &quot;Unity Editor&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Unity Attach To.Attach to.executor&quot;: &quot;Debug&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity Attach To.Attach to">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />

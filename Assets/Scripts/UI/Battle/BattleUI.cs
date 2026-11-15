@@ -10,25 +10,54 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
     [SerializeField] private BattleContext context;
     [SerializeField] private BattleLauncher launcher;
     [SerializeField] private TMP_Text turnCount;
-    [SerializeField] private TMP_Text actorName;
     [SerializeField] private RectTransform logBox;
     [SerializeField] private ScrollRect logScrollbar;
     [SerializeField] private TMP_Text logPrefab;
+    [SerializeField] private CombatantUI combatantUIPrefab;
+    [SerializeField] private RectTransform combatantsContainer;
 
     public bool IsPlaying { get; private set; }
 
     private readonly List<TMP_Text> logs = new();
+    private readonly List<CombatantUI> combatants = new();
 
     private void Start()
     {
         context.TurnChanged += OnTurnChanged;
         context.SetPresenter(this);
+        context.LoopStarted +=  OnLoopStarted;
+        context.LoopEnded += OnLoopEnded;
+    }
+
+    private void OnLoopStarted(Battle battle)
+    {
+        foreach (Combatant combatant in battle.Combatants)
+        {
+            CombatantUI ui = Instantiate(combatantUIPrefab, combatantsContainer);
+            ui.Initialize(combatant);
+            combatants.Add(ui);
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
+    }
+
+    private void OnLoopEnded(BattleResult result)
+    {
+        foreach (CombatantUI combatant in combatants)
+        {
+            Destroy(combatant.gameObject);
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
+        combatants.Clear();
     }
 
     private void OnTurnChanged(Turn newTurn)
     {
         turnCount.text = $"Turn: {newTurn.Index + 1}";
-        actorName.text = newTurn.Actor.DisplayName;
+        foreach (CombatantUI combatant in combatants)
+        {
+            combatant.UpdateTurn(newTurn);
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
     }
 
     private void Log(string message)
@@ -107,5 +136,10 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
         IsPlaying = false;
     }
 
-    private void OnDestroy() => context.TurnChanged -= OnTurnChanged;
+    private void OnDestroy()
+    {
+        context.TurnChanged -= OnTurnChanged;
+        context.LoopStarted -= OnLoopStarted;
+        context.LoopEnded -= OnLoopEnded;
+    }
 }

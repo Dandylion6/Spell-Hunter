@@ -25,11 +25,11 @@ public class BattleContext : MonoBehaviour
         if (IsInCombat)
             throw new InvalidOperationException("A Battle is already in session!");
 
+        LoopStarted?.Invoke(battle);
+        
         Battle = battle;
         currentPhase = ClockPhase;
         currentPhase.Start();
-
-        LoopStarted?.Invoke(battle);
     }
     
     public void EndCombatLoop(BattleResult result)
