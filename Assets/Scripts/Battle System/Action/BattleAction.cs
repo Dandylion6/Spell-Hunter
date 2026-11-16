@@ -6,10 +6,10 @@ using System.Collections.Generic;
 public abstract class BattleAction
 {
     public string Name { get; private set; }
-    public Combatant Actor { get; private set; }
+    protected Combatant Actor { get; }
     public int TurnCost { get; protected set; } = TurnClock.ClockThreshold;
 
-    public BattleAction(string name, Combatant actor)
+    protected BattleAction(string name, Combatant actor)
     {
         Name = name;
         Actor = actor;
@@ -42,4 +42,16 @@ public abstract class BattleAction
     }
 
     protected abstract void Execute(Battle battle, List<BattleEvent> events);
+}
+
+public class SkipAction : BattleAction
+{
+    public SkipAction(string name, Combatant actor, int turnCost) : base(name, actor)
+    {
+        TurnCost = turnCost;
+    }
+
+    protected override void Execute(Battle battle, List<BattleEvent> events)
+    {
+    }
 }

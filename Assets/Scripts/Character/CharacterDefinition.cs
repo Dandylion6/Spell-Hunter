@@ -5,17 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Character Definition", menuName = "Objects/Character Definition")]
 public class CharacterDefinition : ScriptableObject
 {
-    [Header("Base Character Stats")]
+    [Header("Base Profile")]
     [SerializeField] private string displayName = "New Character Name";
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int maxMana = 40;
+    [SerializeField] [Range(1, 100)] private int speed = 20;
+    [SerializeField] private List<AbilityPreset> abilities = new();
+    
+    [Header("Base Resistances")]
     [SerializeField] private int physicalResistance = 10;
     [SerializeField] private int fireResistance = 10;
     [SerializeField] private int coldResistance = 10;
     [SerializeField] private int shockResistance = 10;
     [SerializeField] private int poisonResistance = 10;
-    [SerializeField] [Range(1, 100)] private int speed = 20;
-    [SerializeField] private List<AbilityPreset> abilities = new();
+    
+    [Header("Base Immunity")]
+    [SerializeField] private bool isImmuneToBleed = false;
+    [SerializeField] private bool isImmuneToBurn = false;
+    [SerializeField] private bool isImmuneToFrozen = false;
+    [SerializeField] private bool isImmuneToShock = false;
+    [SerializeField] private bool isImmuneToPoison = false;
     
     public string DisplayName => displayName;
     public int MaxHealth => maxHealth;
@@ -26,6 +35,13 @@ public class CharacterDefinition : ScriptableObject
     public int ShockResistance => shockResistance;
     public int PoisonResistance => poisonResistance;
     public int Speed => speed;
+
+    public bool IsImmuneToBleed => isImmuneToBleed;
+    public bool IsImmuneToBurn => isImmuneToBurn;
+    public bool IsImmuneToFrozen => isImmuneToFrozen;
+    public bool IsImmuneToShock => isImmuneToShock;
+    public bool IsImmuneToPoison => isImmuneToPoison;
+    
     public IReadOnlyList<AbilityPreset> Abilities => abilities;
 
     public List<AbilityBlueprint> ToAbilityBlueprints()

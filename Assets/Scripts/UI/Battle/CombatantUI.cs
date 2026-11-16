@@ -33,7 +33,7 @@ public class CombatantUI : MonoBehaviour
         health.value = (float)combatant.Stats.CurrentHealth / combatant.Stats.MaxHealth.Value;
         mana.value = (float)combatant.Stats.CurrentMana / combatant.Stats.MaxMana.Value;
 
-        healthText.text = $"{combatant.Stats.CurrentHealth}/{combatant.Stats.MaxHealth}";
-        manaText.text = $"{combatant.Stats.CurrentMana}/{combatant.Stats.MaxMana}";
+        healthText.text = $"{combatant.Stats.CurrentHealth}/{combatant.Stats.MaxHealth.Value}";
+        manaText.text = $"{combatant.Stats.CurrentMana}/{combatant.Stats.MaxMana.Value}";
     }
 }

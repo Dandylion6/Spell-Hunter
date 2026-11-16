@@ -21,7 +21,7 @@ public class Damage
     public DamageType Type { get; }
     public DamageTags Tags { get; }
     public Stat Amount { get; }
-    public bool IgnoresResistance { get; }
+    public bool IgnoresResistance { get; private set; }
 
     public Damage(DamageType type, int amount, DamageTags tags, bool ignoresResistance = false)
     {
@@ -30,4 +30,6 @@ public class Damage
         Amount = new Stat(amount);
         IgnoresResistance = ignoresResistance;
     }
+
+    public void SetIgnoreResistance(bool ignoreResistance) => IgnoresResistance =  ignoreResistance;
 }

@@ -150,6 +150,13 @@ public abstract class Ability
 
     protected virtual void Resolve(CastContext context, List<BattleEvent> events)
     {
+        // Run Reactive logic to a cast.
+        foreach (StatusEffect effect in context.Target.StatusEffects.ToArray())
+        {
+            if (effect.IsExpired) continue;
+            effect.OnTargeted(context, events);
+        }
+        
         foreach (Healing heal in context.Healing)
         {
             context.Ability.User.Stats.Heal(heal.Amount.Value);
@@ -166,7 +173,7 @@ public abstract class Ability
 
         foreach (StatusEffect effect in context.StatusEffects)
         {
-            effect.Target.AddStatusEffect(effect); // Will try to apply the status effect (or refresh it)
+            if (!effect.Target.AddStatusEffect(effect, events)) continue; // Will try to apply the status effect (or refresh it)
             events.Add(new StatusEffectAddedEvent(effect, User, context.Target));
         }
     }

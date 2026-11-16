@@ -15,12 +15,18 @@ MonoBehaviour:
   displayName: Player
   maxHealth: 120
   maxMana: 40
-  physicalResistance: 10
-  fireResistance: 10
-  coldResistance: 10
-  shockResistance: 10
-  poisonResistance: 10
   speed: 30
   abilities:
   - {fileID: 11400000, guid: bfc0e40b10e775d41b71303f19da6e36, type: 2}
+  - {fileID: 11400000, guid: 623a2908ea78ee942b5984e15504a473, type: 2}
   - {fileID: 11400000, guid: 6674990667bc9054190152d28a15b724, type: 2}
+  physicalResistance: 30
+  fireResistance: 15
+  coldResistance: 10
+  shockResistance: 10
+  poisonResistance: 10
+  isImmuneToBleed: 0
+  isImmuneToBurn: 0
+  isImmuneToFrozen: 0
+  isImmuneToShock: 0
+  isImmuneToPoison: 0

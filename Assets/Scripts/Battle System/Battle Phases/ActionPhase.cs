@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class ActionPhase : BattlePhase
 {
@@ -14,22 +13,24 @@ public class ActionPhase : BattlePhase
     {
         List<BattleEvent> events = new();
         Combatant actor = CurrentTurn.Actor;
-        
-        int manaRecovered = CurrentTurn.TicksSinceLastTurn * 2;
+
+        int manaRecovered = CurrentTurn.TicksSinceLastTurn; // TODO: Improve mana recovery.
         int oldMana = actor.Stats.CurrentMana;
-        
+
         int newMana = actor.Stats.RegenerateMana(manaRecovered);
         if (newMana != oldMana)
         {
             events.Add(new ManaEvent(manaRecovered, oldMana, newMana, actor));
         }
 
-        foreach (StatusEffect effect in actor.StatusEffects) effect.OnBeforeAction(Battle, events);
-        
+        foreach (StatusEffect effect in actor.StatusEffects) effect.OnBeforeAction(Battle, CurrentTurn, events);
+
         events.Add(new PreActionEndEvent());
         Context.Presenter?.Play(Battle, events);
-        
-        action = CurrentTurn.Actor.Brain.RequestAction(Battle, actor);
+
+        action = CurrentTurn.Action != null
+            ? Task.FromResult(CurrentTurn.Action) // Will create a finished task from the existing action.
+            : CurrentTurn.Actor.Brain.RequestAction(Battle, actor);
     }
 
     public override void Stop()

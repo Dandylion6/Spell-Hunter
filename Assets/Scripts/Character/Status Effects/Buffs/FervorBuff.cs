@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,22 +12,22 @@ public class FervorBuffBaseStats : BasicBuffBaseStats
     public int IncomingDamagePercent => incomingDamagePercent;
 }
 
-public class FervorBuff : BasicBuff
+public class FervorStatus : BasicStatus
 {
-    public int OutgoingPhysicalDamagePercent { get; }
-    public int IncomingDamagePercent { get; }
+    public Stat OutgoingPhysicalDamagePercent { get; }
+    public Stat IncomingDamagePercent { get; }
 
-    public FervorBuff(Combatant target, FervorBuffBaseStats stats) :
+    public FervorStatus(Combatant target, FervorBuffBaseStats stats) :
         base(target, "Fervor", stats)
     {
-        OutgoingPhysicalDamagePercent = stats.OutgoingPhysicalDamagePercent;
-        IncomingDamagePercent = stats.IncomingDamagePercent;
+        OutgoingPhysicalDamagePercent = new Stat(stats.OutgoingPhysicalDamagePercent);
+        IncomingDamagePercent = new Stat(stats.IncomingDamagePercent);
     }
 
-    public override void OnApply()
+    public override void OnApply(List<BattleEvent> events)
     {
         Target.Stats.IncomingDamagePercentage.AssignModifier(new StatModifier(this, StatModifierType.Flat,
-            IncomingDamagePercent));
+            IncomingDamagePercent.Value));
     }
 
     public override void OnRemove()
@@ -36,7 +37,7 @@ public class FervorBuff : BasicBuff
 
     public override void OnModify(CastContext context)
     {
-        StatModifier damageAmp = new(this, StatModifierType.Percentage, OutgoingPhysicalDamagePercent);
+        StatModifier damageAmp = new(this, StatModifierType.Percentage, OutgoingPhysicalDamagePercent.Value);
         foreach (Damage damage in context.Damage.Where(damage => damage.Type == DamageType.Physical))
         {
             damage.Amount.AssignModifier(damageAmp);

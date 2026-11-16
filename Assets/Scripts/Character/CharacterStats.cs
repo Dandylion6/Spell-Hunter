@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CharacterStats
@@ -12,11 +10,17 @@ public class CharacterStats
     public int CurrentMana { get; private set; }
     public Stat MaxMana { get; }
     
-    public Stat PhysicalResistance { get; private set; }
-    public Stat FireResistance { get; private set; }
-    public Stat ColdResistance { get; private set; }
-    public Stat ShockResistance { get; private set; }
-    public Stat PoisonResistance { get; private set; }
+    public Stat PhysicalResistance { get; }
+    public Stat FireResistance { get; }
+    public Stat ColdResistance { get; }
+    public Stat ShockResistance { get; }
+    public Stat PoisonResistance { get; }
+    
+    public Stat BleedImmunity { get; }
+    public Stat BurnImmunity { get; }
+    public Stat FrozenImmunity { get; }
+    public Stat ShockImmunity { get; }
+    public Stat PoisonImmunity { get; }
     
     public Stat Speed { get; private set; }
     
@@ -36,6 +40,12 @@ public class CharacterStats
         ColdResistance = new Stat(definition.ColdResistance);
         ShockResistance = new Stat(definition.ShockResistance);
         PoisonResistance = new Stat(definition.PoisonResistance);
+
+        BleedImmunity = new Stat(definition.IsImmuneToBleed ? 1 : 0);
+        BurnImmunity = new Stat(definition.IsImmuneToBurn ? 1 : 0);
+        FrozenImmunity = new Stat(definition.IsImmuneToFrozen ? 1 : 0);
+        ShockImmunity = new Stat(definition.IsImmuneToShock ? 1 : 0);
+        PoisonImmunity = new Stat(definition.IsImmuneToPoison ? 1 : 0);
         
         Speed = new Stat(definition.Speed);
         IncomingDamagePercentage = new Stat(100);
@@ -53,6 +63,16 @@ public class CharacterStats
             DamageType.Shock => ShockResistance,
             DamageType.Toxin => PoisonResistance,
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
+    }
+
+    public bool IsImmuneTo(StatusEffect status)
+    {
+        return status switch
+        {
+            Burn => BurnImmunity.Value > 0,
+            Frozen => FrozenImmunity.Value > 0,
+            _ => false
         };
     }
 

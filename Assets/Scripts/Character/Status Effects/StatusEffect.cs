@@ -13,14 +13,16 @@ public abstract class StatusEffect
         DisplayName = displayName;
     }
     
-    public virtual void OnApply() { }
-    public virtual void OnRefresh(StatusEffect incomingEffect) { }
+    public virtual void OnApply(List<BattleEvent> events) { }
+    public virtual void OnRefresh(StatusEffect incomingEffect, List<BattleEvent> events) { }
     public virtual void OnRemove() { }
     
-    public virtual void OnBeforeAction(Battle battle, List<BattleEvent> events) { }
+    public virtual void OnBeforeAction(Battle battle, Turn currentTurn, List<BattleEvent> events) { }
     public virtual void OnAfterAction(Battle battle, List<BattleEvent> events) { }
+    public virtual void OnTargeted(CastContext context, List<BattleEvent> events) { }
     
     public virtual void OnCast(CastContext context) { }
+    public virtual bool CanBeApplied() => !Target.Stats.IsImmuneTo(this);
     public virtual void OnModify(CastContext context) { }
 }
 
@@ -32,20 +34,26 @@ public class BasicBuffBaseStats
     public int BuffTurns => buffTurns;
 }
 
-public abstract class BasicBuff : StatusEffect
+public class BasicStatus : StatusEffect
 {
     public override bool IsExpired => TurnsRemaining <= 0;
     
     public int MaxTurns { get; }
-    public int TurnsRemaining { get; private set; }
+    public int TurnsRemaining { get; protected set; }
     
-    protected BasicBuff(Combatant target, string displayName, BasicBuffBaseStats stats) : base(target, displayName)
+    protected BasicStatus(Combatant target, string displayName, BasicBuffBaseStats stats) : base(target, displayName)
     {
         MaxTurns = stats.BuffTurns;
         TurnsRemaining = stats.BuffTurns;
     }
 
-    public override void OnRefresh(StatusEffect incomingEffect) => TurnsRemaining = MaxTurns;
+    public BasicStatus(Combatant target, string displayName, int buffTurns) : base(target, displayName)
+    {
+        MaxTurns = buffTurns;
+        TurnsRemaining = buffTurns;
+    }
 
-    public override void OnBeforeAction(Battle battle, List<BattleEvent> events) => --TurnsRemaining;
+    public override void OnRefresh(StatusEffect incomingEffect, List<BattleEvent> events) => TurnsRemaining = MaxTurns;
+
+    public override void OnBeforeAction(Battle battle, Turn currentTurn, List<BattleEvent> events) => --TurnsRemaining;
 }

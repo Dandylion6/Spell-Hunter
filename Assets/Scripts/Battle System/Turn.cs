@@ -23,4 +23,12 @@ public class Turn
     }
     
     public void SetAction(BattleAction action) => Action ??= action;
+
+    public bool TrySetAction(BattleAction action)
+    {
+        if (Action != null) return false;
+        
+        Action = action;
+        return true;
+    }
 }

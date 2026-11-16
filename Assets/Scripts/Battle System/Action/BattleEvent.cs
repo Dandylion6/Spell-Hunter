@@ -14,6 +14,19 @@ public class PreActionEndEvent : BattleEvent
 {
 }
 
+public class ActionSkippedEvent : BattleEvent
+{
+    public Combatant Source { get; }
+    public string Reason { get; }
+
+    public ActionSkippedEvent(Combatant source, string reason)
+    {
+        Source = source;
+        Reason = reason;
+    }
+    
+}
+
 public class AbilityUsedEvent : BattleEvent
 {
     public Combatant Source { get; }

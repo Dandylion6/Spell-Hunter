@@ -25,7 +25,7 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
     {
         context.TurnChanged += OnTurnChanged;
         context.SetPresenter(this);
-        context.LoopStarted +=  OnLoopStarted;
+        context.LoopStarted += OnLoopStarted;
         context.LoopEnded += OnLoopEnded;
     }
 
@@ -37,6 +37,7 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
             ui.Initialize(combatant);
             combatants.Add(ui);
         }
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
     }
 
@@ -46,6 +47,7 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
         {
             Destroy(combatant.gameObject);
         }
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
         combatants.Clear();
     }
@@ -57,6 +59,7 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
         {
             combatant.UpdateTurn(newTurn);
         }
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(combatantsContainer);
     }
 
@@ -112,6 +115,7 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                     break;
                 case ManaEvent manaEvent:
                     if (manaEvent.ManaDelta == 0) break;
@@ -128,6 +132,9 @@ public class BattleUI : MonoBehaviour, IBattlePresenter
                 case StatusEffectRemovedEvent statusEffectRemovedEvent:
                     Log(
                         $"{statusEffectRemovedEvent.Source.DisplayName}'s {statusEffectRemovedEvent.StatusEffect.DisplayName} has been removed");
+                    break;
+                case ActionSkippedEvent skippedEvent:
+                    Log($"{skippedEvent.Source.DisplayName}'s turn skipped due to {skippedEvent.Reason}");
                     break;
                 case ActionEndEvent: yield return new WaitForSeconds(2.0f); break;
             }

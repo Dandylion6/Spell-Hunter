@@ -16,7 +16,7 @@ MonoBehaviour:
   manaCost: 4
   required: 7
   additions: 48
-  onHitDamage: 10
+  onHitDamage: 8
   damageType: 1
   burn:
     stackFireDamage: 3

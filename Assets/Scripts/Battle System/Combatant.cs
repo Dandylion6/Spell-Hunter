@@ -14,7 +14,7 @@ public class Combatant
     public TurnClock Clock { get; private set; }
     public IActionProvider Brain { get; private set; }
     public CombatantType CombatantType { get; private set; }
-    public List<StatusEffect> StatusEffects { get; private set; }
+    public List<StatusEffect> StatusEffects { get; }
     
     public bool IsDead => Stats.CurrentHealth <= 0;
     
@@ -43,19 +43,21 @@ public class Combatant
         return abilities;
     }
 
-    public void AddStatusEffect(StatusEffect statusEffect)
+    public bool AddStatusEffect(StatusEffect statusEffect, List<BattleEvent> events)
     {
-        if (statusEffect == null) return;
+        if (statusEffect == null) return false;
+        if (!statusEffect.CanBeApplied()) return false;
 
         StatusEffect existing = StatusEffects.FirstOrDefault(effect => effect.GetType() == statusEffect.GetType());
         if (existing != null)
         {
-            existing.OnRefresh(statusEffect);
-            return;
+            existing.OnRefresh(statusEffect, events);
+            return true;
         }
 
         StatusEffects.Add(statusEffect);
-        statusEffect.OnApply();
+        statusEffect.OnApply(events);
+        return true;
     }
 
     public void RemoveStatusEffect(StatusEffect statusEffect)

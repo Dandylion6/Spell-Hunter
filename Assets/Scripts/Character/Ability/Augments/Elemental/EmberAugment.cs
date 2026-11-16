@@ -13,6 +13,6 @@ public class EmberAugment : ElementalAugment
 
     protected override void OnBoon(CastContext context)
     {
-        context.StatusEffects.Add(new FervorBuff(context.Target, buff));
+        context.StatusEffects.Add(new FervorStatus(context.Target, buff));
     }
 }

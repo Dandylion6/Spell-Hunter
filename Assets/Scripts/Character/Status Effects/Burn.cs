@@ -61,9 +61,9 @@ public class Burn : StatusEffect
         CurrentResistMelt = 0;
     }
 
-    public override void OnApply() => ProcBurn();
+    public override void OnApply(List<BattleEvent> events) => ProcBurn();
 
-    public override void OnRefresh(StatusEffect incomingEffect)
+    public override void OnRefresh(StatusEffect incomingEffect, List<BattleEvent> events)
     {
         if (incomingEffect is not Burn newBurn)
             throw new System.ArgumentException("incoming effect is not of type Burn", nameof(incomingEffect));
@@ -78,7 +78,7 @@ public class Burn : StatusEffect
         ProcBurn();
     }
 
-    public override void OnBeforeAction(Battle battle, List<BattleEvent> events)
+    public override void OnBeforeAction(Battle battle, Turn currentTurn, List<BattleEvent> events)
     {
         if (IsExpired) return;
         List<Stack> tickBuffer = new(Stacks);
