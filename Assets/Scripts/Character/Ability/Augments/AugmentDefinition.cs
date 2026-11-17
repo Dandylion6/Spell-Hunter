@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AugmentDefinition : ScriptableObject
@@ -35,8 +34,8 @@ public abstract class AugmentDefinition : ScriptableObject
     
     public virtual void OnBattleStart(Augment augment, Battle battle) { }
     public virtual void OnBattleEnd(Augment augment, Battle battle) { }
+    
     public virtual void OnCast(CastContext context) { }
     public virtual void OnModify(CastContext context) { }
     public virtual void OnHit(CastContext context) { }
-    // TODO: Add OnStatusEffect
 }

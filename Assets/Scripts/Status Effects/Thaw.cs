@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class Thaw : BasicStatus
+public class Thaw : SimpleStatus
 {
     public Thaw(Combatant target, int turns) : base(target, "Thaw", turns)
     {
@@ -14,5 +14,10 @@ public class Thaw : BasicStatus
     public override void OnRemove()
     {
         Target.Stats.FrozenImmunity.RemoveModifiersFromSource(this);
+    }
+
+    public override string GetTooltip()
+    {
+        throw new System.NotImplementedException();
     }
 }

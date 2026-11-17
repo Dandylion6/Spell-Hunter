@@ -1,40 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-[System.Serializable]
-public class FrozenBaseStats
+public class Frozen : SimpleStatus
 {
-    [SerializeField] [Min(0)] private int frozenTurns = 1;
-    [SerializeField] [Min(0)] private int shatterDamageThreshold = 12;
-    [SerializeField] [Min(0)] private int thawTurns = 2;
-    [SerializeField] private bool ignorePhysicalResistanceOnShatter = true;
-    [SerializeField] private bool isImmuneToShock = true;
-
-    public int FrozenTurns => frozenTurns;
-    public int ShatterDamageThreshold => shatterDamageThreshold;
-    public int ThawTurns => thawTurns;
-    public bool IgnorePhysicalResistanceOnShatter => ignorePhysicalResistanceOnShatter;
-    public bool IsImmuneToShock => isImmuneToShock;
-}
-
-public class Frozen : StatusEffect
-{
-    public override bool IsExpired => TurnsRemaining <= 0;
-    
     public int ShatterDamageThreshold { get; }
     public bool IgnorePhysicalResistanceOnShatter { get; }
-    public int ThawTurns { get; }
+    public int ThawDuration { get; }
     public bool IsImmuneToShock { get; } // TODO: Add immunity to all elements (on combatant.)
-    public int TurnsRemaining { get; private set; }
 
-    public Frozen(Combatant target, FrozenBaseStats stats) : base(target, "Frozen")
+    public Frozen(Combatant target, string displayName, int duration, int shatterDamageThreshold, int thawDuration,
+        bool ignorePhysicalResistanceOnShatter, bool isImmuneToShock) : base(target, displayName, duration)
     {
-        TurnsRemaining = stats.FrozenTurns;
-        ShatterDamageThreshold = stats.ShatterDamageThreshold;
-        ThawTurns = stats.ThawTurns;
-        IgnorePhysicalResistanceOnShatter = stats.IgnorePhysicalResistanceOnShatter;
-        IsImmuneToShock = stats.IsImmuneToShock;
+        ShatterDamageThreshold = shatterDamageThreshold;
+        ThawDuration = thawDuration;
+        IgnorePhysicalResistanceOnShatter = ignorePhysicalResistanceOnShatter;
+        IsImmuneToShock = isImmuneToShock;
     }
 
     public override void OnApply(List<BattleEvent> events)
@@ -52,27 +32,33 @@ public class Frozen : StatusEffect
             events.Add(new ActionSkippedEvent(Target, "Frozen"));
         }
 
-        --TurnsRemaining;
-        if (TurnsRemaining == 0) ProcThaw(events);
+        base.OnBeforeAction(battle, currentTurn, events);
+
+        if (DurationRemaining == 0) ProcThaw(events);
     }
 
     public override void OnTargeted(CastContext context, List<BattleEvent> events)
     {
         if (IsExpired) return;
-        
+
         Damage firstPhysicalDamage = context.Damage.FirstOrDefault(damage =>
             damage.Type == DamageType.Physical && damage.Amount.Value >= ShatterDamageThreshold);
-        
+
         if (firstPhysicalDamage == null) return;
 
-        TurnsRemaining = 0;
+        DurationRemaining = 0;
         if (IgnorePhysicalResistanceOnShatter) firstPhysicalDamage.SetIgnoreResistance(true);
         ProcThaw(events);
     }
 
+    public override string GetTooltip()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void ProcThaw(List<BattleEvent> events)
     {
-        Thaw thaw = new(Target, ThawTurns);
+        Thaw thaw = new(Target, ThawDuration);
         Target.AddStatusEffect(thaw, events);
         events.Add(new StatusEffectAddedEvent(thaw, Target, Target));
     }

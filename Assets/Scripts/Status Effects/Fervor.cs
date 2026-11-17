@@ -1,27 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-[System.Serializable]
-public class FervorBuffBaseStats : BasicBuffBaseStats
-{
-    [SerializeField] private int outgoingPhysicalDamagePercent;
-    [SerializeField] private int incomingDamagePercent;
-
-    public int OutgoingPhysicalDamagePercent => outgoingPhysicalDamagePercent;
-    public int IncomingDamagePercent => incomingDamagePercent;
-}
-
-public class FervorStatus : BasicStatus
+public class Fervor : SimpleStatus
 {
     public Stat OutgoingPhysicalDamagePercent { get; }
     public Stat IncomingDamagePercent { get; }
 
-    public FervorStatus(Combatant target, FervorBuffBaseStats stats) :
-        base(target, "Fervor", stats)
+    public Fervor(Combatant target, string display, int duration, int outgoingPhysicalDamagePercent,
+        int incomingDamagePercent) : base(target, display, duration)
     {
-        OutgoingPhysicalDamagePercent = new Stat(stats.OutgoingPhysicalDamagePercent);
-        IncomingDamagePercent = new Stat(stats.IncomingDamagePercent);
+        OutgoingPhysicalDamagePercent = new Stat(outgoingPhysicalDamagePercent);
+        IncomingDamagePercent = new Stat(incomingDamagePercent);
     }
 
     public override void OnApply(List<BattleEvent> events)
@@ -42,5 +31,10 @@ public class FervorStatus : BasicStatus
         {
             damage.Amount.AssignModifier(damageAmp);
         }
+    }
+
+    public override string GetTooltip()
+    {
+        throw new System.NotImplementedException();
     }
 }

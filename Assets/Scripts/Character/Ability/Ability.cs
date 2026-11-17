@@ -156,7 +156,7 @@ public abstract class Ability
             if (effect.IsExpired) continue;
             effect.OnTargeted(context, events);
         }
-        
+
         foreach (Healing heal in context.Healing)
         {
             context.Ability.User.Stats.Heal(heal.Amount.Value);
